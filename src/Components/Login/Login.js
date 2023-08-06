@@ -9,7 +9,7 @@ const Login = () =>{
     return (
         <Routes>
             <Route path="/" element={<LoginForm/>}/>
-            <Route path="/login/loginResetPassword" element={<LoginResetPassword/>}/>
+            <Route path="/loginResetPassword" element={<LoginResetPassword/>}/>
             <Route path="/loginCreate" element={<LoginCreate/>}/>
         </Routes>    
     )

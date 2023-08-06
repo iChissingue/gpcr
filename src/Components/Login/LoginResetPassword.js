@@ -3,7 +3,7 @@ import React from "react";
 const LoginResetPassword = () =>{
 
     return (
-        <div>LoginResetpassword</div>
+        <div>Login Reset password</div>
     )
 }
 
