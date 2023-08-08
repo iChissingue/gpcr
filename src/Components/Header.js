@@ -1,15 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import styles from '../Components/Header.module.css'
+import { UserContext } from '../UserContext'
 
 const Header = () =>{
+
+    const user = useContext(UserContext)
 
     return (
         <header className={styles.header}>
             <nav className='container'>
                 <Link to="/">Pfuneka</Link>
                 <div>
-                  <Link to="/login">Login</Link>
+                  <Link to="/login">
+                    {user.username}
+                    Login</Link>
                 </div>
                 
             </nav>

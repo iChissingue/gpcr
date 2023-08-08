@@ -4,6 +4,7 @@ const useForm = () =>{
     const [  value, setValue ] = useState('')
     const [  error, setError ] = useState(null)
 
+
     const validate =(value) =>{
         if(value.length === 0){
             setError("Preencha um valor!")

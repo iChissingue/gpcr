@@ -1,14 +1,32 @@
-import Axios from "axios";
-import React from "react";
-import { Link } from "react-router-dom";
-import Input from "../Forms/Input";
-import Button from "../Forms/Button";
-import useForm from "../../Hooks/useForm";
+import Axios from "axios"
+import React, { useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
+import Input from "../Forms/Input"
+import Button from "../Forms/Button"
+import useForm from "../../Hooks/useForm"
+import { URL_POST } from "../../Hooks/Api"
+import { USER_GET } from "../../Hooks/Api"
+import { UserContext } from "../../UserContext"
+
+
 
 const LoginForm = () =>{
    const usernameSet = useForm()
    const passwordSet = useForm()
-   const url = 'http://localhost:2020/user/login'
+   const user = useContext(UserContext)
+
+   useEffect(() => {
+        const token = window.localStorage.getItem('token')
+        if(token){
+            getUser(token)
+        }
+   }, [])
+
+   const getUser = async (token) =>{
+        const { url, headers } = USER_GET(token)
+        const response = await Axios.get(url, {headers: headers})
+        console.log(response)
+   }
 
    const handdleSubmit = async (e) =>{
      e.preventDefault()
@@ -18,9 +36,14 @@ const LoginForm = () =>{
         const {value: password} = passwordSet 
         const loginValues = {username, password}
         
-        await Axios.post(url, loginValues).then(response =>{
-             console.log(response.data)
-         })
+        await Axios.post(URL_POST, loginValues)
+            .then(response =>{
+             window.localStorage.setItem(
+                'token', 
+                response.data.token
+            )
+            getUser(response.data.token)
+        })
      }    
    }
     return (
