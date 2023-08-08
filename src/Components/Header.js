@@ -5,16 +5,19 @@ import { UserContext } from '../UserContext'
 
 const Header = () =>{
 
-    const user = useContext(UserContext)
-
+    const { data } = useContext(UserContext)
+   
     return (
         <header className={styles.header}>
             <nav className='container'>
                 <Link to="/">Pfuneka</Link>
                 <div>
-                  <Link to="/login">
-                    {user.username}
-                    Login</Link>
+                    { data ? 
+                    (<Link to="/login">{data.name}</Link>) 
+                    : (<Link to="/login"> Login</Link>)}
+
+                  
+                  
                 </div>
                 
             </nav>
