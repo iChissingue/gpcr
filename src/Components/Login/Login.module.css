@@ -1,0 +1,38 @@
+.login{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 100vh;
+    gap: 2rem;
+}
+
+.login::after{
+    display: block;
+    content: '';
+    background: url('../../../public/login.PNG') no-repeat center center ;
+    background-color: #eee;
+    
+}
+
+.forms{
+    max-width: 100rem;
+    padding: 10rem;
+}
+
+.title{
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+@media (max-width: 40rem){
+    .login{
+        grid-template-columns: 1fr;
+    }
+
+    .login::after{
+        display: none;
+    }
+
+    .forms{
+        width: 100%;
+    }
+}

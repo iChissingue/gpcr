@@ -4,6 +4,7 @@ import Input from "../Forms/Input"
 import Button from "../Forms/Button"
 import useForm from "../../Hooks/useForm"
 import { UserContext } from "../../UserContext"
+import styles from "../Login/Login.module.css"
 
 
 
@@ -21,17 +22,19 @@ const LoginForm = () =>{
      }    
    }
     return (
-        <div>
-            <h1>Login</h1>
-            <form action=""onSubmit={handdleSubmit} >
-                <Input label="Usuario" type="text" name="username" {...username}/>
-                <Input label="Senha" type="password" name="password" {...password}/>   
-                <Button >Entrar</Button>
-            </form>
-            
-            <Link to='/login/loginCreate'>Cria Usuario</Link>
-            <Link to='/login/LoginResetPassword'>Redefinir a senha</Link>
-        </div>
+        <section className={styles.login}>
+            <div className={styles.forms}>
+                <h2 className={styles.title}>Login</h2>
+                <form action=""onSubmit={handdleSubmit} >
+                    <Input label="Usuario" type="text" name="username" {...username}/>
+                    <Input label="Senha" type="password" name="password" {...password}/>   
+                    <Button >Entrar</Button>
+                </form>
+                
+                <Link to='/login/loginCreate'>Cria Usuario</Link>
+                <Link to='/login/LoginResetPassword'>Redefinir a senha</Link>
+            </div>
+        </section>
     )
 }
 

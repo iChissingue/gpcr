@@ -5,7 +5,7 @@ import { UserContext } from '../UserContext'
 
 const Header = () =>{
 
-    const { data } = useContext(UserContext)
+    const { data, logOut } = useContext(UserContext)
    
     return (
         <header className={styles.header}>
@@ -13,11 +13,13 @@ const Header = () =>{
                 <Link to="/">Pfuneka</Link>
                 <div>
                     { data ? 
-                    (<Link to="/login">{data.name}</Link>) 
+                    (
+                        <Link to="/login">
+                            Entrou no sitema como {data.name}
+                            <button onClick={logOut}>Sair</button>
+                        </Link>
+                    ) 
                     : (<Link to="/login"> Login</Link>)}
-
-                  
-                  
                 </div>
                 
             </nav>
