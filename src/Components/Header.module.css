@@ -13,3 +13,8 @@ nav{
     display: flex;
     justify-content: space-between;
 }
+
+.navigators{
+    display: flex;
+    flex-direction: row;
+}

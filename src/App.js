@@ -3,11 +3,14 @@ import Header from "./Components/Header"
 import Footer from "./Components/Footer"
 import Home from "./Components/Home"
 import Login from "./Components/Login/Login"
-import { UserStorage } from "./UserContext"
+import {  UserStorage } from "./UserContext"
 import './App.css'
+import Dashboard from "./Components/DashBoard"
 
 
 function App() {
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -16,6 +19,9 @@ function App() {
             <Routes>  
               <Route path="/" element={<Home/>}/>
               <Route path="/login/*" element={<Login/>}/>
+             
+                <Route path="/dashboard" element={<Dashboard/>}/>
+            
             
             </Routes>
           <Footer/>

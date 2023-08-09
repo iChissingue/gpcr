@@ -11,12 +11,12 @@ const Header = () =>{
         <header className={styles.header}>
             <nav className='container'>
                 <Link to="/">Pfuneka</Link>
-                <div>
+                <div className={styles.navigators}>
                     { data ? 
                     (
-                        <Link to="/login">
+                        <Link style={{ display: 'flex', flexDirection: 'raw'}} to="/login">
                             {data.username}
-                            <button onClick={logOut}>Sair</button>
+                            <p style={{color: 'red', marginLeft: '10px', textDecoration: 'underline'}} onClick={logOut}>[ Sair ]</p >
                         </Link>
                     ) 
                     : (<Link to="/login"> Login</Link>)}
