@@ -11,8 +11,8 @@ export const USER_GET = (token)=>{
 
 export const USER_TOKEN_VALIDATE = (token)=>{
     return {
-        url: 'http://localhost:2020/user/tokenValidate',
-        body: token
+        url: 'http://localhost:2020/user/loginTokenValidate',
+        body: {token}
     }
 }
 

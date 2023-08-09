@@ -6,6 +6,7 @@ import Login from "./Components/Login/Login"
 import { UserStorage } from "./UserContext"
 import './App.css'
 
+
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,7 @@ function App() {
             <Routes>  
               <Route path="/" element={<Home/>}/>
               <Route path="/login/*" element={<Login/>}/>
+            
             </Routes>
           <Footer/>
         </UserStorage>

@@ -15,7 +15,7 @@ const Header = () =>{
                     { data ? 
                     (
                         <Link to="/login">
-                            Entrou no sitema como {data.name}
+                            {data.username}
                             <button onClick={logOut}>Sair</button>
                         </Link>
                     ) 

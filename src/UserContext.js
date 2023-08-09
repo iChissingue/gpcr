@@ -1,31 +1,28 @@
 import Axios from "axios"
-import React, { createContext, useEffect, useState } from "react"
+import React, { createContext, useEffect, useState, useCallback } from "react"
 import { URL_POST, USER_GET, USER_TOKEN_VALIDATE } from "./Hooks/Api"
+import { useNavigate } from "react-router-dom"
 
 
 export const UserContext = createContext()
 
 export const UserStorage = ({children}) =>{
     const [data, setData] = useState(null)
-    const [login, setLogin] = useState(null)
-    const [loadding, setLoadding] = useState(false)
+    const [login, setLogin] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
+    const navigate = useNavigate()
+    
+    const logOut = useCallback ( async () =>{
+        setData(null)
+        setLogin(false)
+        setError(null)
+        setLoading(false)
+        window.localStorage.removeItem('token')
+        navigate('/login')
+    }, [navigate])
 
-    useEffect (() => {
-        async function autoLogin(){
-            const token = window.localStorage.getItem('token')
-            console.log(token)
-            if(token){
-                const { url, body } = USER_TOKEN_VALIDATE(token)
-                const response = await Axios.post(url, body)
-                console.log(response)
-            }else{
-                return false
-            }
-        }
-        autoLogin()
-    }, [])
-
+    
     const getUser = async (token) =>{
         const { url, headers } = USER_GET(token)
         const response = await Axios.get(url, {headers: headers})
@@ -33,35 +30,57 @@ export const UserStorage = ({children}) =>{
         setData(credentials)
         setLogin(true)
     }
-
-     const userLogin = async (username, password) =>{
+    
+    const userLogin = async (username, password) =>{
         try {
             setError(null)
-            setLoadding(false)
+            setLoading(false)
             const response = await Axios.post(URL_POST, {username, password})
-            const { token } = response.data
-            window.localStorage.setItem('token', token)
-            await getUser(token)
+            if(response.status===200){
+                const { token } = response.data
+                window.localStorage.setItem('token', token)
+                await getUser(token)
+                navigate('/login/dashboard')
+                
+            }else{
+                setError(response.data)
+            }
             
         } catch (error) {
             setError(error.message)
             setLogin(false)
         } finally{
-            setLoadding(false)
+            setLoading(false)
         }
     }
 
-    const logOut = async () =>{
-        setData(null)
-        setLogin(false)
-        setError(null)
-        setLoadding(false)
-        window.localStorage.removeItem('token')
-    }
 
+    useEffect (() => {
+        async function autoLogin(){
+            try {
+                
+                const token = window.localStorage.getItem('token')
+                if(token){
+                    setError(null)
+                    setLoading(true)
+                    const { url, body } = USER_TOKEN_VALIDATE(token)
+                    const response = await Axios.post(url, body)
+                    if(!response.status===200)throw new Error(response.data)
+                        await getUser(token)
+                }else{
+                    setLogin(false)
+                }
+            } catch (error) {
+                logOut()
+            }finally{
+                setLoading(false)
+            }
+        }
+        autoLogin()
+    }, [logOut])
 
     return (
-        <UserContext.Provider value={{userLogin, logOut, data}}>
+        <UserContext.Provider value={{userLogin, logOut, data, error, loading, login}}>
             {children}
         </UserContext.Provider>
     )
