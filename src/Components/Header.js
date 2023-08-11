@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
-import styles from '../Components/Header.module.css'
 import { UserContext } from '../UserContext'
 import { 
     AppBar,
@@ -22,6 +21,8 @@ import  HomeIcon from '@mui/icons-material/Home'
 import  GroupsIcon from '@mui/icons-material/Groups'
 import { useNavigate } from 'react-router-dom'
 import LeaderboardIcon from '@mui/icons-material/Leaderboard'
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
+import HelpIcon from '@mui/icons-material/Help'
 
 const Header = () =>{
     const { login, data, logOut } = useContext(UserContext)
@@ -33,13 +34,33 @@ const Header = () =>{
         setMenuOpen(!menuOpen)
       }
     
-      const handleMemberChick = () =>{
+      const handleMemberClick = () =>{
         navigate('/login/members')
         handleToggleMenu()
       }
     
-      const handleHomeChick = () =>{
+      const handleHomeClick = () =>{
         navigate('/login/dashboard')
+        handleToggleMenu()
+      }
+      
+      const handleReportsClick = () =>{
+        navigate('/login/reports')
+        handleToggleMenu()
+      }
+
+      const handleAdminClick = () =>{
+        if(data.userCategory_id ===1){
+            navigate('/login/admin')
+            handleToggleMenu()
+        }else{
+            alert("Entrada reservada para o pessoal autorizado!")
+            handleToggleMenu()
+        }
+      }
+
+      const handleHelpClick = () =>{
+        navigate('/login/helppage')
         handleToggleMenu()
       }
     
@@ -79,18 +100,26 @@ const Header = () =>{
           </AppBar>
          <Drawer open={menuOpen} onClose={() => handleToggleMenu()}>
             <List>
-              <ListItemButton onClick={() => handleHomeChick()}>
+              <ListItemButton onClick={() => handleHomeClick()}>
                 <ListItemIcon><HomeIcon color='primary'/></ListItemIcon>
                 <ListItemText>Home</ListItemText>
               </ListItemButton>
-              <ListItemButton onClick={()=> handleMemberChick()}>
+              <ListItemButton onClick={()=> handleMemberClick()}>
                 <ListItemIcon><GroupsIcon color='primary'/></ListItemIcon>
                 <ListItemText>Membros</ListItemText>
               </ListItemButton>
-              <hr/>
-              <ListItemButton onClick={()=> handleMemberChick()}>
+              <ListItemButton onClick={()=> handleReportsClick()}>
                 <ListItemIcon><LeaderboardIcon color='primary'/></ListItemIcon>
                 <ListItemText>Relatorios</ListItemText>
+              </ListItemButton>
+              <hr/>
+              <ListItemButton onClick={()=> handleAdminClick()}>
+                <ListItemIcon><ManageAccountsIcon color='primary'/></ListItemIcon>
+                <ListItemText>Administracao</ListItemText>
+              </ListItemButton>
+              <ListItemButton onClick={()=> handleHelpClick()}>
+                <ListItemIcon><HelpIcon color='primary'/></ListItemIcon>
+                <ListItemText>Ajuda</ListItemText>
               </ListItemButton>
             </List>
           </Drawer> 

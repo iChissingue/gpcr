@@ -11,6 +11,9 @@ import MemberProfile from "./pages/MemberProfile"
 import ProtectedRoutes from "./Components/Help/ProtectedRoutes"
 import Members from "./pages/Members"
 import LoginCreate from "./Components/Login/LoginCreate"
+import Reports from "./pages/Reports"
+import HelpPage from "./pages/HelpPage"
+import Admin from "./pages/Admin"
 
 
 
@@ -31,6 +34,9 @@ function App() {
                 <Route path="/members/memberprofile/*" element={<MemberProfile/>}/>
                 <Route path="login/members/*" element={<Members/>}/>
                 <Route path="/login/loginCreate" element={<LoginCreate/>}/>
+                <Route path="/login/reports" element={<Reports/>}/>
+                <Route path="/login/admin" element={<Admin/>}/>
+                <Route path="/login/helppage" element={<HelpPage/>}/>
               </Route>
             </Routes>
           <Footer/>

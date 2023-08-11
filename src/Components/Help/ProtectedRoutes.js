@@ -5,9 +5,15 @@ import { UserContext } from "../../UserContext"
 const ProtectedRoutes = () =>{
     const { login } = useContext(UserContext)
     
-    return login?
-        <Outlet />
-            : <Navigate to={'/login'}/>
+     if(login ===true){
+        return <Outlet />
+     }else if(login ===false){
+        return <Navigate to={'/login'}/>
+     }else{
+        return null
+     }
+       
+            
 }
 
 export default ProtectedRoutes
