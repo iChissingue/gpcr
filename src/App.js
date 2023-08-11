@@ -7,6 +7,7 @@ import {  UserStorage } from "./UserContext"
 import './App.css'
 import Dashboard from "./Components/DashBoard"
 import AddMember from "./pages/AddMember"
+import MemberProfile from "./pages/MemberProfile"
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
              
               <Route path="/dashboard" element={<Dashboard/>}/>
               <Route path="/members/add" element={<AddMember/>}/>
+              <Route path="/members/memberprofile/*" element={<MemberProfile/>}/>
             
             
             </Routes>
