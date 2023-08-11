@@ -8,6 +8,10 @@ import './App.css'
 import Dashboard from "./Components/DashBoard"
 import AddMember from "./pages/AddMember"
 import MemberProfile from "./pages/MemberProfile"
+import ProtectedRoutes from "./Components/Help/ProtectedRoutes"
+import Members from "./pages/Members"
+import LoginCreate from "./Components/Login/LoginCreate"
+
 
 
 function App() {
@@ -21,12 +25,13 @@ function App() {
             <Routes>  
               <Route path="/" element={<Home/>}/>
               <Route path="/login/*" element={<Login/>}/>
-             
-              <Route path="/dashboard" element={<Dashboard/>}/>
-              <Route path="/members/add" element={<AddMember/>}/>
-              <Route path="/members/memberprofile/*" element={<MemberProfile/>}/>
-            
-            
+              <Route element={<ProtectedRoutes/>}>
+                <Route path="/login/dashboard" element={<Dashboard/>}/>
+                <Route path="/members/add" element={<AddMember/>}/>
+                <Route path="/members/memberprofile/*" element={<MemberProfile/>}/>
+                <Route path="login/members/*" element={<Members/>}/>
+                <Route path="/login/loginCreate" element={<LoginCreate/>}/>
+              </Route>
             </Routes>
           <Footer/>
         </UserStorage>
