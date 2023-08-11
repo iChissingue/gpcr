@@ -16,3 +16,28 @@ export const USER_TOKEN_VALIDATE = (token)=>{
     }
 }
 
+export const USER_CREATE = (
+    name, 
+    username, 
+    password, 
+    confirmPassword, 
+    userCategory, 
+    userState) =>{
+    return {
+        url: 'http://localhost:2020/user',
+        body: {name, 
+            username, 
+            password, 
+            confirmPassword, 
+            userCetegory_id: userCategory, 
+            userState_id: userState
+        }
+    }
+}
+
+export const MEMBERS_GET = () =>{
+    return {
+        url: "http://localhost:2020/members"
+    }
+}
+

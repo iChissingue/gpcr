@@ -1,6 +1,11 @@
 import Axios from "axios"
 import React, { createContext, useEffect, useState, useCallback } from "react"
-import { URL_POST, USER_GET, USER_TOKEN_VALIDATE } from "./Hooks/Api"
+import { 
+    URL_POST, 
+    USER_GET, 
+    USER_TOKEN_VALIDATE, 
+    USER_CREATE 
+} from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
 
@@ -54,11 +59,28 @@ export const UserStorage = ({children}) =>{
         }
     }
 
+    const createUser = async (
+        name, 
+        username, 
+        password, 
+        confirmPassword, 
+        userCategory, 
+        userState) =>{
+        // try {
+
+        console.log(name)
+            const { url } = USER_CREATE()
+            const response = await Axios.post(url, {name, username, password, confirmPassword, userCategory_id:userCategory, userState_id:userState})
+            console.log(response)
+        // } catch (error) {
+            
+        // }
+    }
+
 
     useEffect (() => {
         async function autoLogin(){
             try {
-                
                 const token = window.localStorage.getItem('token')
                 if(token){
                     setError(null)
@@ -80,7 +102,7 @@ export const UserStorage = ({children}) =>{
     }, [logOut])
 
     return (
-        <UserContext.Provider value={{userLogin, logOut, data, error, loading, login}}>
+        <UserContext.Provider value={{userLogin, createUser, logOut, data, error, loading, login}}>
             {children}
         </UserContext.Provider>
     )
