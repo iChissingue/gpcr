@@ -6,7 +6,10 @@ const Footer = () =>{
 
     return (
         <>
-            <div className={styles.Footer}>Footer</div>
+            <div className={styles.Footer}>
+                <hr/>
+                Footer
+            </div>
         </>
     )
 }

@@ -5,6 +5,8 @@ import LoginCreate from "./LoginCreate"
 import LoginForm from "./LoginForm"
 import { UserContext } from "../../UserContext"
 import Dashboard from "../DashBoard"
+import Members from "../Members"
+
 
 
 const Login = () =>{
@@ -17,6 +19,7 @@ const Login = () =>{
             <Route path="/loginResetPassword" element={<LoginResetPassword/>}/>
             <Route path="/loginCreate" element={<LoginCreate/>}/>
             <Route path="/dashboard" element={<Dashboard/>}/>
+            <Route path="/members" element={<Members/>}/>
         </Routes>    
     )
 }

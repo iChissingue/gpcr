@@ -17,7 +17,14 @@ const LoginCreate = () =>{
     const handdleSubmit = async (e) =>{
         e.preventDefault()
    
-        if(username.validate() && password.validate()){
+        if(
+            name.validate() && 
+            username.validate() && 
+            password.validate() &&
+            confirmPassword.validate() &&
+            userCategory.validate() &&
+            userState.validate()
+            ){
                   
             createUser(name.value, 
                 username.value, 
@@ -30,7 +37,7 @@ const LoginCreate = () =>{
 
     return (
         <div className="container">
-           
+            <p style={{textAlign: 'right', color: 'blue'}}>{error}</p>
             <h2>Cricao de Usuario</h2>
             <Input label="Nome Completo" type="text" name="name" {...name}/>
             <Input label="Nome do Usuario" type="text" name="username" {...username}/>

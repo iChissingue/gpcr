@@ -1,17 +1,24 @@
-import { useState, useEffect } from "react"
+import { useContext } from "react"
+import { UserContext } from "../UserContext"
 
 
 const Members = () =>{
-    // const {members, setMembers } = useState()
-
-    // useEffect(async ()=>{
-    //     const result = await Axios.get("http://localhost:2020/members")
-    //     console.log(result)
-    //     setMembers(result)
-    // },[members])
-
+   const { membersData } = useContext(UserContext) 
+   
     return (
-        <div> Members list</div>
+        <div className="container"> 
+            <h2>Lista dos Membros</h2>
+            { membersData && membersData.map(member => (
+               <p style={{marginBottom: '10px'}}>
+                    {`
+                        Nome: ${member.name} | 
+                        Data de Admissao: ${member.admissionDate}
+                    `}
+               </p>  
+              
+
+            ))}
+        </div>
     )
 }
 

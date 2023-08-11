@@ -6,7 +6,7 @@ import { UserContext } from '../UserContext'
 const Header = () =>{
 
     const { data, logOut } = useContext(UserContext)
-   
+    
     return (
         <header className={styles.header}>
             <nav className='container'>
@@ -16,6 +16,7 @@ const Header = () =>{
                     (
                         <Link style={{ display: 'flex', flexDirection: 'raw'}} to="/login">
                             {data.username}
+                           
                             <p style={{color: 'red', marginLeft: '10px', textDecoration: 'underline'}} onClick={logOut}>[ Sair ]</p >
                         </Link>
                     ) 

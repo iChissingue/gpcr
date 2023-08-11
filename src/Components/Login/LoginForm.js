@@ -36,7 +36,7 @@ const LoginForm = () =>{
                             
                 </form>
                 
-                <Link to='/login/loginCreate'>Cria Usuario</Link>
+                
                 <Link to='/login/LoginResetPassword'>Redefinir a senha</Link>
             </div>
         </section>
