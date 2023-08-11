@@ -5,7 +5,8 @@ import {
     USER_GET, 
     USER_TOKEN_VALIDATE, 
     USER_CREATE,
-    MEMBERS_GET, 
+    MEMBERS_GET,
+    MEMBERS_POST, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
@@ -85,6 +86,34 @@ export const UserStorage = ({children}) =>{
         }
     }
 
+
+    const createMember = async (
+        name, 
+        age, 
+        inheritant, 
+        sex, 
+        admissionDate, 
+        adress_id,
+        contact
+        ) =>{
+        // try {
+
+            const { url } = MEMBERS_POST()
+            const response = await Axios.post(url, {name, age, inheritant, sex, admissionDate, adress_id, contact})
+            console.log(response)
+            if(response.status===200){
+                const { data } = response
+                setError(data)
+                navigate('/login/members')
+                
+            }else{
+                setError(response.data)
+            }
+        // } catch (error) {
+            
+        // }
+    }
+
     const listMembers = async () =>{
         const { url } = MEMBERS_GET()
         const response = await Axios.get(url)
@@ -122,7 +151,7 @@ export const UserStorage = ({children}) =>{
     
 
     return (
-        <UserContext.Provider value={{userLogin, createUser, logOut, listMembers, data, membersData, error, loading, login}}>
+        <UserContext.Provider value={{userLogin, createUser, createMember, logOut, data, membersData, error, loading, login}}>
             {children}
         </UserContext.Provider>
     )
