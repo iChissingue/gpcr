@@ -6,15 +6,15 @@ const MemberProfile = () =>{
 
         return(
             <div className="container">
-                <h2>Perfil do Membro</h2>
+               <h2>Perfil do Membro</h2>
                
                <h3>Nome: {memberData.name}</h3>
                <p>Idade: {memberData.age}</p>
-               <p>{ `${memberData.inheritant}`}</p>
-               <p>{ `${memberData.sex}`}</p>
-               <p>{ `${memberData.admissionDate}`}</p>
-               <p>{ `${memberData.Contact}`}</p>
-               <p>{ `${memberData.adress_id}`}</p>
+               <p>Herdeiro(a): {memberData.inheritant}</p>
+               <p>Sexo: {memberData.sex}</p>
+               <p>Data de Admissao: {memberData.admissionDate}</p>
+               <p>Contacto: {memberData.contact}</p>
+               <p>Endereco: {memberData.adress_id}</p>
             </div>
         )
 }

@@ -29,6 +29,7 @@ export const UserStorage = ({children}) =>{
         setLogin(false)
         setError(null)
         setLoading(false)
+        window.localStorage.removeItem('member')
         window.localStorage.removeItem('token')
         navigate('/login')
     }, [navigate])
@@ -125,12 +126,24 @@ export const UserStorage = ({children}) =>{
         setMembersData(data)      
     }
 
+    const refreshRetrive = () =>{
+        const retrivedData = window.localStorage.getItem('member')
+        const json = JSON.parse(retrivedData)
+        setMemberData(json)
+    }
+
     const selectMember = async (id) =>{
         const { url } = MEMBER_GET(id)
         const response = await Axios.get(url)
-        const {data} = response
-        setMemberData(data)
-        navigate(`members/memberprofile/${id}`)    
+        if(response.status ===200){
+            const {data} = response
+            setMemberData(data)
+            window.localStorage.setItem('member',  JSON.stringify(data))
+            navigate(`members/memberprofile/${id}`)
+        }else{
+            refreshRetrive()
+        }
+           
     }
 
    
@@ -156,9 +169,10 @@ export const UserStorage = ({children}) =>{
     }
 
     useEffect (() => {
+        refreshRetrive()
         autoLogin()
         listMembers()
-        selectMember()
+       
     }, [])
 
 

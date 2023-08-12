@@ -1,11 +1,10 @@
 import { useContext } from "react"
 import { UserContext } from "../UserContext"
 import { Link } from "react-router-dom"
-import MemberProfile from "./MemberProfile"
+
 
 
 const Members = () =>{
-    
    const { membersData, selectMember } = useContext(UserContext) 
    
     return (
