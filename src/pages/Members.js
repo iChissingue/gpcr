@@ -5,7 +5,8 @@ import MemberProfile from "./MemberProfile"
 
 
 const Members = () =>{
-   const { membersData } = useContext(UserContext) 
+    
+   const { membersData, selectMember } = useContext(UserContext) 
    
     return (
         <div className="container" style={{backgroundColor: '#eee'}}> 
@@ -13,7 +14,7 @@ const Members = () =>{
             { membersData && membersData.map(member => (
                 <div>
                     <p style={{marginBottom: '10px', backgroundColor: '#eee'}}>
-                        Nome:<Link to={`/members/memberprofile/${member.id}`} style={{fontWeight: 'bold'}}>{` ${member.name }`}</Link>
+                        Nome:<button onClick={() =>selectMember(member.id)} style={{fontWeight: 'bold'}}>{` ${member.name }`}</button>
                     </p> 
                     Data de Admissao:<i style={{marginBottom: '10px', color: 'blue'}}>
                             {` ${member.admissionDate}`}

@@ -32,12 +32,13 @@ const LoginCreate = () =>{
                 confirmPassword.value, 
                 userCategory.value, 
                 userState.value)
+            
         }    
       }
 
     return (
         <div className="container">
-            <p style={{textAlign: 'right', color: 'blue'}}>{error}</p>
+            <p style={{textAlign: 'right', color: '#ff2e1b'}}>{error}</p>
             <h2>Cricao de Usuario</h2>
             <Input label="Nome Completo" type="text" name="name" {...name}/>
             <Input label="Nome do Usuario" type="text" name="username" {...username}/>

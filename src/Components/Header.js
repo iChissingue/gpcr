@@ -23,6 +23,8 @@ import { useNavigate } from 'react-router-dom'
 import LeaderboardIcon from '@mui/icons-material/Leaderboard'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import HelpIcon from '@mui/icons-material/Help'
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Header = () =>{
     const { login, data, logOut } = useContext(UserContext)
@@ -54,13 +56,18 @@ const Header = () =>{
             navigate('/login/admin')
             handleToggleMenu()
         }else{
-            alert("Entrada reservada para o pessoal autorizado!")
+            alert(`Entrada reservada para o pessoal autorizado!`)
             handleToggleMenu()
         }
       }
 
       const handleHelpClick = () =>{
         navigate('/login/helppage')
+        handleToggleMenu()
+      }
+
+      const handleLogOutClick = () =>{
+        logOut()
         handleToggleMenu()
       }
     
@@ -91,7 +98,7 @@ const Header = () =>{
                         <Link style={{ display: 'flex', flexDirection: 'raw'}} to="/login">
                             {data.username}
                            
-                            <p style={{color: 'red', marginLeft: '10px', textDecoration: 'underline'}} onClick={logOut}>[ Sair ]</p >
+                            <b style={{color: '#ff2e1b', marginLeft: '10px', textDecoration: 'underline'}} onClick={logOut}>[ Sair ]</b >
                         </Link>
                     ) 
                     : (<Button color="inherit">Login</Button>)}
@@ -120,6 +127,10 @@ const Header = () =>{
               <ListItemButton onClick={()=> handleHelpClick()}>
                 <ListItemIcon><HelpIcon color='primary'/></ListItemIcon>
                 <ListItemText>Ajuda</ListItemText>
+              </ListItemButton>
+              <ListItemButton onClick={()=> handleLogOutClick()}>
+                <ListItemIcon><PowerSettingsNewIcon color='secondary'/></ListItemIcon>
+                <ListItemText>Sair</ListItemText>
               </ListItemButton>
             </List>
           </Drawer> 

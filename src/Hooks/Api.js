@@ -42,6 +42,12 @@ export const MEMBERS_GET = () =>{
     }
 }
 
+export const MEMBER_GET = (id) =>{
+    return {
+        url: `http://localhost:2020/member/${id}`
+    }
+}
+
 
 export const MEMBERS_POST = () =>{
     return {

@@ -5,18 +5,21 @@ import {
     USER_GET, 
     USER_TOKEN_VALIDATE, 
     USER_CREATE,
+    MEMBER_GET,
     MEMBERS_GET,
     MEMBERS_POST, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
 
+
 export const UserContext = createContext()
 
 export const UserStorage = ({children}) =>{
     const [data, setData] = useState()
+    const [memberData, setMemberData] = useState()
     const [membersData, setMembersData ] = useState()
-    const [login, setLogin] = useState(false)
+    const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const navigate = useNavigate()
@@ -76,6 +79,7 @@ export const UserStorage = ({children}) =>{
             if(response.status===200){
                 const { data } = response
                 setError(data)
+                userLogin(username, password)
                 navigate('/login/dashboard')
                 
             }else{
@@ -118,9 +122,18 @@ export const UserStorage = ({children}) =>{
         const { url } = MEMBERS_GET()
         const response = await Axios.get(url)
         const {data} = response
-        setMembersData(data)
+        setMembersData(data)      
     }
 
+    const selectMember = async (id) =>{
+        const { url } = MEMBER_GET(id)
+        const response = await Axios.get(url)
+        const {data} = response
+        setMemberData(data)
+        navigate(`members/memberprofile/${id}`)    
+    }
+
+   
 
     async function autoLogin(){
         try {
@@ -145,13 +158,26 @@ export const UserStorage = ({children}) =>{
     useEffect (() => {
         autoLogin()
         listMembers()
-    }, [logOut])
+        selectMember()
+    }, [])
 
 
     
 
     return (
-        <UserContext.Provider value={{userLogin, createUser, createMember, logOut, data, membersData, error, loading, login}}>
+        <UserContext.Provider value={{
+            userLogin, 
+            createUser, 
+            createMember, 
+            selectMember, 
+            logOut, 
+            data, 
+            memberData, 
+            membersData, 
+            error, 
+            loading, 
+            login
+            }}>
             {children}
         </UserContext.Provider>
     )

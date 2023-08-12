@@ -12,7 +12,7 @@ import Members from "../../pages/Members"
 const Login = () =>{
     const { login } = useContext(UserContext)
 
-    if(login ===true) <Navigate to="/login/dashboard"/>
+    if(login ===false) <Navigate to="/"/>
     return (
         <Routes>
             <Route path="/" element={<LoginForm/>}/>
