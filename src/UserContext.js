@@ -7,7 +7,9 @@ import {
     USER_CREATE,
     MEMBER_GET,
     MEMBERS_GET,
-    MEMBERS_POST, 
+    MEMBERS_POST,
+    SAVINGS_POST,
+    SAVINGS_DELETE, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
@@ -138,12 +140,26 @@ export const UserStorage = ({children}) =>{
         if(response.status ===200){
             const {data} = response
             setMemberData(data)
+            console.log(data)
             window.localStorage.setItem('member',  JSON.stringify(data))
             navigate(`members/memberprofile/${id}`)
         }else{
             refreshRetrive()
-        }
-           
+        }      
+    }
+
+    const savingsRecord = async (savingsData) =>{
+        const { url, body } = SAVINGS_POST(savingsData)
+       
+        const response = await Axios.post(url, {body: body})
+        console.log(response)
+
+    }
+
+    const savingsDelete = async (id) =>{
+        const { url } = SAVINGS_DELETE(id)
+        const response = await Axios.delete(url)
+        console.log(response)
     }
 
    
@@ -184,7 +200,8 @@ export const UserStorage = ({children}) =>{
             createUser, 
             createMember, 
             selectMember, 
-            logOut, 
+            logOut,
+            savingsRecord, 
             data, 
             memberData, 
             membersData, 

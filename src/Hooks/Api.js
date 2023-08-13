@@ -48,10 +48,22 @@ export const MEMBER_GET = (id) =>{
     }
 }
 
-
 export const MEMBERS_POST = () =>{
     return {
         url: "http://localhost:2020/member"
+    }
+}
+
+export const SAVINGS_POST = (savingsData) =>{
+    return {
+        url: "http://localhost:2020/savings",
+        body: {savingsData}
+    }
+}
+
+export const SAVINGS_DELETE = (id) =>{
+    return {
+        url: `http://localhost:2020/savings/${id}`,
     }
 }
 

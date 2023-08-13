@@ -70,6 +70,10 @@ const Header = () =>{
         logOut()
         handleToggleMenu()
       }
+      const handleLogInClick = () =>{
+        navigate('/login')
+        
+      }
     
     
     
@@ -101,7 +105,7 @@ const Header = () =>{
                             <b style={{color: '#ff2e1b', marginLeft: '10px', textDecoration: 'underline'}} onClick={logOut}>[ Sair ]</b >
                         </Link>
                     ) 
-                    : (<Button color="inherit">Login</Button>)}
+                    : (<Button onClick={() => handleLogInClick()} color="inherit">Login</Button>)}
               
             </Toolbar>
           </AppBar>

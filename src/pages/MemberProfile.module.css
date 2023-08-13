@@ -1,0 +1,25 @@
+.profile, 
+.savings{
+    border: 1px solid #eee;
+    width: 300px;
+    margin-left: 10px;
+    padding: 20px;
+    background-color: azure;
+    justify-items: space-between;
+}
+
+.savings Input, 
+.savings Button,
+.profile Button,
+.profile p{
+    margin-top: 10px;
+}
+
+.title{
+    margin-bottom: 20px;
+}
+
+.savings Button,
+.savings Input{
+    display: block;
+}
