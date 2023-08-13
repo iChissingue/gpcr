@@ -1,11 +1,13 @@
 import { useContext } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 import { UserContext } from "../UserContext"
-import { Button, Input } from "@mui/material"
+import { Button, Input, Table, TableHead, TableRow } from "@mui/material"
 import styles from "../pages/MemberProfile.module.css"
 import useForm from "../Hooks/useForm"
 
 const MemberProfile = () =>{
-    const { savingsRecord, memberData} = useContext(UserContext)
+    const Navigate =useNavigate()
+    const { savingsRecord, memberData, confirm, memberDelete} = useContext(UserContext)
     const savingsDate = useForm()
     const savingsAmmount = useForm()
     const sFund = useForm()
@@ -19,9 +21,8 @@ const MemberProfile = () =>{
             savingsAmmount.validate() &&
             sFund.validate()             
             ){
-            console.log(memberData)
             const savingsData = {
-                savings: savingsDate.value, 
+                savingsDate: savingsDate.value, 
                 savingsAmmount: savingsAmmount.value, 
                 sFund: sFund.value, 
                 member_id: memberData.id}
@@ -30,10 +31,19 @@ const MemberProfile = () =>{
         }
     }
 
+    const handdleDelete = () =>{
+        window.confirm("Deseja deletar este membro?")
+        memberDelete(memberData.id)
+    }
+
+    const handdleMebers = () =>{
+        Navigate("/login/members")
+    }
+
         return(
             <div className="container" style={{display: 'flex'}}>
                <div className={styles.profile}>
-                <h2>Perfil do Membro</h2>
+                <h2 className={styles.title}>Perfil do Membro</h2>
                 
                 <h3>Nome: {memberData.name}</h3>
                 <p>Idade: {memberData.age}</p>
@@ -43,10 +53,12 @@ const MemberProfile = () =>{
                 <p>Contacto: {memberData.contact}</p>
                 <p>Endereco: {memberData.adress}</p>
                 <Button>Editar</Button>
-                <Button>Remover</Button>
+                <Button onClick={handdleDelete}>Remover</Button>
+                <Button onClick={handdleMebers}>Membros</Button>
                </div>
                <div className={styles.savings}>
-                <h2>Fazer Poupanca</h2>
+                {confirm && <p>{confirm}</p>}
+                <h2 className={styles.title}>Fazer Poupanca</h2>
                 <Input placeholder="Data:" type="date" {...savingsDate}/>
                 <Input placeholder="Montante:" {...savingsAmmount}/>
                 <Input placeholder="Fundo Social:" {...sFund}/>

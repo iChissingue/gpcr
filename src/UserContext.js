@@ -9,7 +9,7 @@ import {
     MEMBERS_GET,
     MEMBERS_POST,
     SAVINGS_POST,
-    SAVINGS_DELETE, 
+    MEMBER_DELETE, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
@@ -19,6 +19,7 @@ export const UserContext = createContext()
 
 export const UserStorage = ({children}) =>{
     const [data, setData] = useState()
+    const [confirm, setConfirm] = useState()
     const [memberData, setMemberData] = useState()
     const [membersData, setMembersData ] = useState()
     const [login, setLogin] = useState(null)
@@ -149,15 +150,14 @@ export const UserStorage = ({children}) =>{
     }
 
     const savingsRecord = async (savingsData) =>{
-        const { url, body } = SAVINGS_POST(savingsData)
-       
-        const response = await Axios.post(url, {body: body})
-        console.log(response)
+        const { url} = SAVINGS_POST(savingsData)
+        const response = await Axios.post(url, savingsData)
+        setConfirm(response.data)
 
     }
 
-    const savingsDelete = async (id) =>{
-        const { url } = SAVINGS_DELETE(id)
+    const memberDelete = async (id) =>{
+        const { url } = MEMBER_DELETE(id)
         const response = await Axios.delete(url)
         console.log(response)
     }
@@ -202,12 +202,14 @@ export const UserStorage = ({children}) =>{
             selectMember, 
             logOut,
             savingsRecord, 
+            memberDelete,
             data, 
             memberData, 
             membersData, 
             error, 
             loading, 
-            login
+            login,
+            confirm
             }}>
             {children}
         </UserContext.Provider>

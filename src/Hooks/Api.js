@@ -57,13 +57,13 @@ export const MEMBERS_POST = () =>{
 export const SAVINGS_POST = (savingsData) =>{
     return {
         url: "http://localhost:2020/savings",
-        body: {savingsData}
+        body: savingsData
     }
 }
 
-export const SAVINGS_DELETE = (id) =>{
+export const MEMBER_DELETE = (id) =>{
     return {
-        url: `http://localhost:2020/savings/${id}`,
+        url: `http://localhost:2020/member/${id}`,
     }
 }
 
