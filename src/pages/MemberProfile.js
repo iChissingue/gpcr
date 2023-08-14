@@ -7,7 +7,7 @@ import useForm from "../Hooks/useForm"
 
 const MemberProfile = () =>{
     const Navigate =useNavigate()
-    const { savingsRecord, memberData, confirm, memberDelete} = useContext(UserContext)
+    const { savingsRecord, listMembers, memberData, confirm, memberDelete} = useContext(UserContext)
     const savingsDate = useForm()
     const savingsAmmount = useForm()
     const sFund = useForm()
@@ -34,9 +34,10 @@ const MemberProfile = () =>{
     const handdleDelete = () =>{
         window.confirm("Deseja deletar este membro?")
         memberDelete(memberData.id)
+        Navigate("/login/members")
     }
 
-    const handdleMebers = () =>{
+    const handdleMembers = () =>{
         Navigate("/login/members")
     }
 
@@ -54,7 +55,7 @@ const MemberProfile = () =>{
                 <p>Endereco: {memberData.adress}</p>
                 <Button>Editar</Button>
                 <Button onClick={handdleDelete}>Remover</Button>
-                <Button onClick={handdleMebers}>Membros</Button>
+                <Button onClick={handdleMembers}>Membros</Button>
                </div>
                <div className={styles.savings}>
                 {confirm && <p>{confirm}</p>}

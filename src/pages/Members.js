@@ -9,7 +9,7 @@ const Members = () =>{
    const { membersData, selectMember } = useContext(UserContext) 
    
     return (
-        <div className="container" style={{backgroundColor: '#eee', display: 'flex'}}> 
+        <div className="container" style={{backgroundColor: '#eee', display: 'flex', marginBottom: '40px', padding: '10px'}}> 
             <div>
 
                 <h2 style={{marginBottom: '30px'}}>Lista dos Membros</h2>

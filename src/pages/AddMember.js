@@ -35,7 +35,7 @@ const AddMember = () =>{
                 admissionDate.value,
                 adress_id.value,
                 contact.value)
-                alert({error})
+                alert(error)
         }    
       }
 

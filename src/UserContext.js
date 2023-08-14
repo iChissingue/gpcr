@@ -24,7 +24,7 @@ export const UserStorage = ({children}) =>{
     const [membersData, setMembersData ] = useState()
     const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(null)
     const navigate = useNavigate()
     
     const logOut = useCallback ( async () =>{
@@ -32,8 +32,7 @@ export const UserStorage = ({children}) =>{
         setLogin(false)
         setError(null)
         setLoading(false)
-        window.localStorage.removeItem('member')
-        window.localStorage.removeItem('token')
+        window.sessionStorage.clear()
         navigate('/login')
     }, [navigate])
 
@@ -53,7 +52,7 @@ export const UserStorage = ({children}) =>{
             const response = await Axios.post(URL_POST, {username, password})
             if(response.status===200){
                 const { token } = response.data
-                window.localStorage.setItem('token', token)
+                window.sessionStorage.setItem('token', token)
                 await getUser(token)
                 navigate('/login/dashboard')
             }else{
@@ -113,6 +112,7 @@ export const UserStorage = ({children}) =>{
                 const { data } = response
                 setError(data)
                 navigate('/login/members')
+                listMembers()
                 
             }else{
                 setError(response.data)
@@ -130,7 +130,7 @@ export const UserStorage = ({children}) =>{
     }
 
     const refreshRetrive = () =>{
-        const retrivedData = window.localStorage.getItem('member')
+        const retrivedData = window.sessionStorage.getItem('member')
         const json = JSON.parse(retrivedData)
         setMemberData(json)
     }
@@ -142,7 +142,7 @@ export const UserStorage = ({children}) =>{
             const {data} = response
             setMemberData(data)
             console.log(data)
-            window.localStorage.setItem('member',  JSON.stringify(data))
+            window.sessionStorage.setItem('member',  JSON.stringify(data))
             navigate(`members/memberprofile/${id}`)
         }else{
             refreshRetrive()
@@ -159,6 +159,7 @@ export const UserStorage = ({children}) =>{
     const memberDelete = async (id) =>{
         const { url } = MEMBER_DELETE(id)
         const response = await Axios.delete(url)
+        listMembers()
         console.log(response)
     }
 
@@ -166,7 +167,7 @@ export const UserStorage = ({children}) =>{
 
     async function autoLogin(){
         try {
-            const token = window.localStorage.getItem('token')
+            const token = window.sessionStorage.getItem('token')
             if(token){
                 setError(null)
                 setLoading(true)
