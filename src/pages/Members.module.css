@@ -1,0 +1,40 @@
+.membersPage{
+    background-color: #eee;
+    display: flex; 
+  
+    padding: 10px;
+    height: 85vh;
+}
+
+.members{
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 370px;
+    height: 400px;
+    margin: 10px ;
+    border: 1px solid #fff;
+}
+
+.member::-webkit-scrollbar{
+    width: 10px;
+    background-color: #333;
+    border-radius: 10px;
+}
+
+.member::-webkit-scrollbar-thumb{
+    background-color: #222;
+    border-radius: 10px;
+}
+
+.card{
+    padding: 10px;
+}
+
+.title{
+    padding: 0 0 0 10px;
+}
+
+.memberDetail{
+   
+    
+}

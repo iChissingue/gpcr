@@ -10,8 +10,9 @@ const Dashboard = () =>{
 
     return (
         <div className="container">
-            <h2>Apresentacao de dados</h2>
-            <Link style={{margin: '30px 30px 30px 0'}} to='/login/members'>Membros</Link>
+            Ola, <b>{data.name}</b>, Seja bem vindo(a) ao Sistema de Gestao de PCR PFUNEKA!<br/>
+           
+            <Link style={{margin: '300px 30px 30px 0px'}} to='/login/members'>Membros</Link>
             {data.userCategory_id ===1 && <Link to='/login/loginCreate'>Cria Usuario</Link>}
         </div>
     )
