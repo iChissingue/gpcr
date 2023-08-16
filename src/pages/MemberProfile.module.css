@@ -1,10 +1,10 @@
 .profile, 
 .savings{
-    border: 1px solid #eee;
+    border: 1px solid siver;
     width: 300px;
     margin-left: 10px;
     padding: 20px;
-    background-color: azure;
+    background-color: #eee;
     justify-items: space-between;
 }
 

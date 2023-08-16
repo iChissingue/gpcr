@@ -9,8 +9,8 @@ const Dashboard = () =>{
 
 
     return (
-        <div className="container">
-            Ola, <b>{data.name}</b>, Seja bem vindo(a) ao Sistema de Gestao de PCR PFUNEKA!<br/>
+        <div className="container" >
+            <p style={{padding: '200px 0 '}}>Ola, <b>{data.name}</b>, Seja bem vindo(a) ao Sistema de Gestao de PCR PFUNEKA!</p>
            
             <Link style={{margin: '300px 30px 30px 0px'}} to='/login/members'>Membros</Link>
             {data.userCategory_id ===1 && <Link to='/login/loginCreate'>Cria Usuario</Link>}

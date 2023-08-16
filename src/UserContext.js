@@ -9,7 +9,8 @@ import {
     MEMBERS_GET,
     MEMBERS_POST,
     SAVINGS_POST,
-    MEMBER_DELETE, 
+    MEMBER_DELETE,
+    MEMBERSAVINGS_GET, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
@@ -21,6 +22,7 @@ export const UserStorage = ({children}) =>{
     const [data, setData] = useState()
     const [confirm, setConfirm] = useState()
     const [memberData, setMemberData] = useState()
+    const [memberSavings, setMemberSavings] = useState()
     const [membersData, setMembersData ] = useState()
     const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -129,20 +131,26 @@ export const UserStorage = ({children}) =>{
         setMembersData(data)      
     }
 
+
     const refreshRetrive = () =>{
         const retrivedData = window.sessionStorage.getItem('member')
+        const retrivedSavings = window.sessionStorage.getItem('memberSavings')
         const json = JSON.parse(retrivedData)
+        const json1 = JSON.parse(retrivedSavings)
         setMemberData(json)
+        setMemberSavings(json1)
     }
 
     const selectMember = async (id) =>{
         const { url } = MEMBER_GET(id)
         const response = await Axios.get(url)
         if(response.status ===200){
-            const {data} = response
-            setMemberData(data)
-            console.log(data)
-            window.sessionStorage.setItem('member',  JSON.stringify(data))
+            const { member, memberSavings} = response.data
+            const mData ={...member, adress: response.data.description}
+            setMemberData(mData)
+            setMemberSavings(memberSavings)
+            window.sessionStorage.setItem('member',  JSON.stringify(mData))
+            window.sessionStorage.setItem('memberSavings',  JSON.stringify(memberSavings))
             navigate(`members/memberprofile/${id}`)
         }else{
             refreshRetrive()
@@ -204,6 +212,7 @@ export const UserStorage = ({children}) =>{
             logOut,
             savingsRecord, 
             memberDelete,
+            memberSavings,
             data, 
             memberData, 
             membersData, 

@@ -48,6 +48,12 @@ export const MEMBER_GET = (id) =>{
     }
 }
 
+export const MEMBERSAVINGS_GET = (id) =>{
+    return {
+        url: `http://localhost:2020/savings/${id}`
+    }
+}
+
 export const MEMBERS_POST = () =>{
     return {
         url: "http://localhost:2020/member"

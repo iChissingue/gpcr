@@ -18,8 +18,8 @@ const Members = () =>{
                 
                 <h2 className={styles.title}>Lista dos Membros</h2>
                 <div className={styles.members}>
-                    { membersData && membersData.map(member =>  ( 
-                        
+                    { 
+                        membersData && membersData.map(member =>  (                         
 
                         <div className={styles.card}>
                             <p className={styles.memberDetail}>Codigo: {member.id}</p>
@@ -37,19 +37,6 @@ const Members = () =>{
                 <Link style={{textDecoration: 'underline'}} to="/login/dashboard" >Pagina inicial</Link>
             </div>
             
-            <div className={styles.profile}>
-                <h2 className={styles.title}>Perfil do Membro</h2>
-                
-                <h3>Nome: {memberData.name}</h3>
-                <p>Idade: {memberData.age}</p>
-                <p>Herdeiro(a): {memberData.inheritant}</p>
-                <p>Sexo: {memberData.sex}</p>
-                <p>Data de Admissao: {memberData.admissionDate}</p>
-                <p>Contacto: {memberData.contact}</p>
-                <p>Endereco: {memberData.adress}</p>
-                <Button>Editar</Button>
-                
-            </div>
         </div>
     )
 }
