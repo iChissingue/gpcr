@@ -8,10 +8,7 @@ import styles from "../pages/Members.module.css"
 
 const Members = () =>{
    const { membersData, memberData, selectMember } = useContext(UserContext) 
-  
 
-   
-   
     return (
         <div className={styles.membersPage} > 
             <div >
@@ -19,15 +16,15 @@ const Members = () =>{
                 <h2 className={styles.title}>Lista dos Membros</h2>
                 <div className={styles.members}>
                     { 
-                        membersData && membersData.map(member =>  (                         
+                        membersData && membersData.map((member, i) =>  (                         
 
-                        <div className={styles.card}>
+                        <div key={i} className={styles.card}>
                             <p className={styles.memberDetail}>Codigo: {member.id}</p>
                             <p className={styles.memberDetail} >
                                 Nome:<Button onClick={() =>selectMember(member.id)} style={{fontWeight: 'bold'}}>{` ${member.name }`}</Button>
                             </p> 
-                            Data de Admissao:<i className={styles.memberDetail} >
-                                    {` ${member.admissionDate}`}
+                            Contacto:<i className={styles.memberDetail} >
+                                    {` ${member.contact}`}
                             </i> 
                             <hr/> 
                         </div>

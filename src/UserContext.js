@@ -148,7 +148,7 @@ export const UserStorage = ({children}) =>{
             const { member, memberSavings} = response.data
             const mData ={...member, adress: response.data.description}
             setMemberData(mData)
-            setMemberSavings(memberSavings)
+            setMemberSavings(memberSavings) 
             window.sessionStorage.setItem('member',  JSON.stringify(mData))
             window.sessionStorage.setItem('memberSavings',  JSON.stringify(memberSavings))
             navigate(`members/memberprofile/${id}`)

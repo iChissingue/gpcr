@@ -8,7 +8,7 @@ import MemberHistory from "./MemberHistory"
 
 const MemberProfile = () =>{
     const Navigate =useNavigate()
-    const { savingsRecord, memberData, confirm, memberDelete, selectMember} = useContext(UserContext)
+    const { savingsRecord, memberData, confirm, memberDelete, data, selectMember} = useContext(UserContext)
     const savingsDate = useForm()
     const savingsAmmount = useForm()
     const sFund = useForm()
@@ -29,7 +29,7 @@ const MemberProfile = () =>{
                 member_id: memberData.id}
                   
             savingsRecord(savingsData)
-            selectMember(memberData.id)
+            selectMember(memberData.id  )
 
         }
     }
@@ -60,7 +60,7 @@ const MemberProfile = () =>{
                     <p>Contacto: {memberData.contact}</p>
                     <p>Endereco: {memberData.adress}</p>
                     <Button>Editar</Button>
-                    <Button onClick={handdleDelete}>Remover</Button>
+                    {data.userCategory_id ===1 &&<Button onClick={handdleDelete}>Remover</Button>}
                     <Button onClick={handdleMembers}>Membros</Button>
                 </div>
                 <form className={styles.savings} >
