@@ -1,77 +1,36 @@
 import { useContext } from "react"
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate, NavLink } from "react-router-dom"
 import { UserContext } from "../UserContext"
-import { Button, Input, } from "@mui/material"
 import styles from "../pages/MemberProfile.module.css"
-import useForm from "../Hooks/useForm"
-import MemberHistory from "./MemberHistory"
+import MemberSavings from "./MemberSavings"
 import Save from "./Save"
 import Loan from "./Loan"
 import Refund from "./Refund"
 import MemberUpdatesNav from "./MemberUpdatesNav"
+import MemberIdentity from "./MemberIdentity"
+import MemberRefunds from "./MemberRefunds"
 
 const MemberProfile = () =>{
-    const Navigate =useNavigate()
-    const { savingsRecord, memberData, confirm, memberDelete, data, selectMember} = useContext(UserContext)
-    const savingsDate = useForm()
-    const savingsAmmount = useForm()
-    const sFund = useForm()
-   
-    
-    const handdleSubmit = async (e) =>{
-        e.preventDefault()
-   
-        if(
-            savingsDate.validate() &&
-            savingsAmmount.validate() &&
-            sFund.validate()             
-            ){
-            const savingsData = {
-                savingsDate: savingsDate.value, 
-                savingsAmmount: savingsAmmount.value, 
-                sFund: sFund.value, 
-                member_id: memberData.id}
-                  
-            savingsRecord(savingsData)
-            selectMember(memberData.id  )
-
-        }
-    }
-
-    const handdleDelete = () =>{
-        window.confirm("Deseja deletar este membro?")
-        memberDelete(memberData.id)
-        Navigate("/login/members")
-        alert("membro deletado com sucesso!")
-    }
-
-    const handdleMembers = () =>{
-        Navigate("/login/members")
-    }
-
+    const { memberData, confirm,  data, selectMember} = useContext(UserContext)
+  
         return(
-            <div>
+            <div style={{display: 'flex', margin: 'auto'}}>
 
-                <div className="container" style={{display: 'flex'}}>
+                <div  style={{display: 'flex', margin: 'auto'}}>
                 <div className={styles.profile}>
-                    <div className={styles.buttons}>
-                        <button>Identidade</button>
-                        <button>Poupancas</button>
-                        <button>Emprestimos</button>
-                        <button>Reembolsos</button>
-                    </div>
-                    <h2 className={styles.title}>Perfil do Membro</h2>
-                    
-                    <h3>Nome: {memberData.name}</h3>
-                    <p>Idade: {memberData.age}</p>
-                    <p>Herdeiro(a): {memberData.inheritant}</p>
-                    <p>Sexo: {memberData.sex}</p>
-                    <p>Data de Admissao: {memberData.admissionDate}</p>
-                    <p>Contacto: {memberData.contact}</p>
-                    <p>Endereco: {memberData.adress}</p>
-                    <Button>Editar</Button>
-                    {data.userCategory_id ===1 &&<Button onClick={handdleDelete}>Remover</Button>}
-                    <Button onClick={handdleMembers}>Membros</Button>
+                    <b>{memberData.name}</b>
+                <nav className={styles.buttons}>
+                    <NavLink to="/members/memberprofile/memberidentity"><button>Identidade</button></NavLink>
+                    <NavLink to="/members/memberprofile/membersavings"><button>Poupancas</button></NavLink>
+                    <NavLink to="/members/memberprofile/loans"><button>Emprestimos</button></NavLink>
+                    <NavLink to="/members/memberprofile/refunds"><button>Reembolsos</button></NavLink>
+                </nav>
+                    <Routes style={{display: 'block'}}>
+                        <Route path="/memberidentity" element={<MemberIdentity/>}/>
+                        <Route path="/membersavings" element={<MemberSavings/>}/>
+                        <Route path="/memberrefunds" element={<MemberRefunds/>}/>
+                    </Routes>
+                
                 </div>
                 <div className={styles.savings} >
                         <MemberUpdatesNav/>
@@ -84,7 +43,6 @@ const MemberProfile = () =>{
                     </div>
                 </div>
                 </div>
-                <MemberHistory/>
             </div>
         )
 }

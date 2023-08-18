@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import { UserContext } from "../UserContext"
 import styles from "../pages/MemberHistory.module.css"
 
-const MemberHistory = () =>{
+const MemberSavings = () =>{
     const { memberSavings, memberData} = useContext(UserContext)
         
         const savi = memberSavings && memberSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
@@ -31,4 +31,4 @@ const MemberHistory = () =>{
 
 }
 
-export default MemberHistory
+export default MemberSavings
