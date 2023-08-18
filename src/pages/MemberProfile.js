@@ -1,10 +1,14 @@
 import { useContext } from "react"
-import { Navigate, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate } from "react-router-dom"
 import { UserContext } from "../UserContext"
 import { Button, Input, } from "@mui/material"
 import styles from "../pages/MemberProfile.module.css"
 import useForm from "../Hooks/useForm"
 import MemberHistory from "./MemberHistory"
+import Save from "./Save"
+import Loan from "./Loan"
+import Refund from "./Refund"
+import MemberUpdatesNav from "./MemberUpdatesNav"
 
 const MemberProfile = () =>{
     const Navigate =useNavigate()
@@ -50,6 +54,12 @@ const MemberProfile = () =>{
 
                 <div className="container" style={{display: 'flex'}}>
                 <div className={styles.profile}>
+                    <div className={styles.buttons}>
+                        <button>Identidade</button>
+                        <button>Poupancas</button>
+                        <button>Emprestimos</button>
+                        <button>Reembolsos</button>
+                    </div>
                     <h2 className={styles.title}>Perfil do Membro</h2>
                     
                     <h3>Nome: {memberData.name}</h3>
@@ -63,15 +73,16 @@ const MemberProfile = () =>{
                     {data.userCategory_id ===1 &&<Button onClick={handdleDelete}>Remover</Button>}
                     <Button onClick={handdleMembers}>Membros</Button>
                 </div>
-                <form className={styles.savings} >
-                    {confirm && <p>{confirm}</p>}
-                    <h2 className={styles.title}>Fazer Poupanca</h2>
-                    <Input placeholder="Data:" type="date" {...savingsDate}/>
-                    <Input placeholder="Montante:" {...savingsAmmount}/>
-                    <Input placeholder="Fundo Social:" {...sFund}/>
-                    <input type="file" />
-                    <Button onClick={handdleSubmit}>Submeter</Button>
-                </form>
+                <div className={styles.savings} >
+                        <MemberUpdatesNav/>
+                    <div className={styles.buttons}>
+                        <Routes style={{display: 'block'}}>
+                            <Route path="/save" element={<Save/>}/>
+                            <Route path="/loan" element={<Loan/>}/>
+                            <Route path="/refund" element={<Refund/>}/>
+                        </Routes>
+                    </div>
+                </div>
                 </div>
                 <MemberHistory/>
             </div>

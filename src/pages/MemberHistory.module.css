@@ -1,0 +1,19 @@
+.savingsList{
+    overflow: hidden;
+    overflow-y: scroll;
+    width: 370px;
+    height: 100px;
+    margin: 10px ;
+    border: 1px solid #fff;
+}
+
+
+.avingsList::-webkit-scrollbar{
+    width: 10px;
+    background-color: blanchedalmond;
+    border-radius: 10px;
+}
+
+.savingsList::-webkit-scrollbar-thumb{
+    background-color: blue;
+}

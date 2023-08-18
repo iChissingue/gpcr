@@ -7,7 +7,7 @@ import styles from "../pages/Members.module.css"
 
 
 const Members = () =>{
-   const { membersData, memberData, selectMember } = useContext(UserContext) 
+   const { membersData, data, selectMember } = useContext(UserContext) 
 
     return (
         <div className={styles.membersPage} > 
@@ -30,7 +30,7 @@ const Members = () =>{
                         </div>
                     ))}
                 </div>
-                <Link style={{textDecoration: 'underline', marginRight: '30px'}} to="/members/add" >Adicionar Membro</Link>
+                {data.userCategory_id ===1 && <Link style={{textDecoration: 'underline', marginRight: '30px'}} to="/members/add" >Adicionar Membro</Link>}
                 <Link style={{textDecoration: 'underline'}} to="/login/dashboard" >Pagina inicial</Link>
             </div>
             

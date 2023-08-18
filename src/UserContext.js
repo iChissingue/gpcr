@@ -197,6 +197,7 @@ export const UserStorage = ({children}) =>{
         refreshRetrive()
         autoLogin()
         listMembers()
+        selectMember()
        
     }, [])
 
