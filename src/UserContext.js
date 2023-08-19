@@ -9,9 +9,9 @@ import {
     MEMBERS_GET,
     MEMBERS_POST,
     SAVINGS_POST,
+    REFUND_POST,
     LOAN_POST,
-    MEMBER_DELETE,
-    MEMBERSAVINGS_GET, 
+    MEMBER_DELETE, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
@@ -25,6 +25,7 @@ export const UserStorage = ({children}) =>{
     const [memberData, setMemberData] = useState()
     const [memberSavings, setMemberSavings] = useState()
     const [memberLoans, setMemberLoans] = useState()
+    const [memberRefunds, setMemberRefunds] = useState()
     const [membersData, setMembersData ] = useState()
     const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -138,28 +139,33 @@ export const UserStorage = ({children}) =>{
         const retrivedData = window.sessionStorage.getItem('member')
         const retrivedSavings = window.sessionStorage.getItem('memberSavings')
         const retrivedLoans = window.sessionStorage.getItem('memberLoans')
+        const retrivedRefunds = window.sessionStorage.getItem('memberRefunds')
         const json = JSON.parse(retrivedData)
         const json1 = JSON.parse(retrivedSavings)
         const json2 = JSON.parse(retrivedLoans)
+        const json3 = JSON.parse(retrivedRefunds)
         setMemberData(json)
         setMemberSavings(json1)
         setMemberLoans(json2)
+        setMemberRefunds(json3)
     }
 
     const selectMember = async (id) =>{
         const { url } = MEMBER_GET(id)
         const response = await Axios.get(url)
         if(response.status ===200){
-            const { member, memberSavings, memberLoans} = response.data
-            console.log(memberLoans)
+            const { member, memberSavings, memberLoans, memberRefunds} = response.data
+            console.log(memberRefunds)
             
             const mData ={...member, adress: response.data.description}
             setMemberData(mData)
             setMemberSavings(memberSavings) 
             setMemberLoans(memberLoans)
+            setMemberRefunds(memberRefunds)
             window.sessionStorage.setItem('member',  JSON.stringify(mData))
             window.sessionStorage.setItem('memberSavings',  JSON.stringify(memberSavings))
             window.sessionStorage.setItem('memberLoans',  JSON.stringify(memberLoans))
+            window.sessionStorage.setItem('memberRefunds',  JSON.stringify(memberRefunds))
             navigate(`/members/memberprofile/memberidentity${id}`)
         }else{
             refreshRetrive()
@@ -177,15 +183,18 @@ export const UserStorage = ({children}) =>{
         const response = await Axios.post(url, loanData)
         setConfirm(response.data)
     }
+    
+    const refundRecord = async (refundData) =>{
+        const { url} = REFUND_POST(refundData)
+        const response = await Axios.post(url, refundData)
+      
+    }
 
     const memberDelete = async (id) =>{
         const { url } = MEMBER_DELETE(id)
         const response = await Axios.delete(url)
-        listMembers()
-        console.log(response)
+        setConfirm(response.data)
     }
-
-   
 
     async function autoLogin(){
         try {
@@ -226,10 +235,12 @@ export const UserStorage = ({children}) =>{
             selectMember, 
             logOut,
             savingsRecord,
-            loanRecord, 
+            loanRecord,
+            refundRecord, 
             memberDelete,
             memberSavings,
             memberLoans,
+            memberRefunds,
             data, 
             memberData, 
             membersData, 

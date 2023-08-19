@@ -1,8 +1,8 @@
 import { NavLink, Route, Routes } from "react-router-dom"
 import styles from "../pages/MemberProfile.module.css"
-import Save from "./SaveForm"
-import Loan from "./LoanForm"
-import Refund from "./RefundForm"
+import SaveForm from "./SaveForm"
+import LoanForm from "./LoanForm"
+import RefundForm from "./RefundForm"
 
 const MemberUpdatesNav = () =>{
     return (
@@ -13,9 +13,9 @@ const MemberUpdatesNav = () =>{
                 <NavLink to="/members/memberprofile/refund"><button>Reembolsar</button></NavLink>
             </nav>
                 <Routes style={{display: 'block'}}>
-                    <Route path="/save" element={<Save/>}/>
-                    <Route path="/loan" element={<Loan/>}/>
-                    <Route path="/refund" element={<Refund/>}/>
+                    <Route path="/save" element={<SaveForm/>}/>
+                    <Route path="/loan" element={<LoanForm/>}/>
+                    <Route path="/refund" element={<RefundForm/>}/>
                 </Routes>
         </div>
     )

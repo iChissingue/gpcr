@@ -11,8 +11,8 @@ const Loan = () =>{
     const { loanRecord, memberData, confirm, data, selectMember} = useContext(UserContext)
     const loanDate = useForm()
     const loanAmmount = useForm()
-    const interestAmmount = useForm()
-    interestAmmount.value = JSON.parse((loanAmmount.value)*12)/100
+    let interestAmmount = useForm()
+    interestAmmount.value = (JSON.parse(loanAmmount.value * 12)/100)
 
     const handdleSubmit = async (e) =>{
         e.preventDefault()

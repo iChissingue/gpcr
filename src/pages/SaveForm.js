@@ -9,7 +9,7 @@ import styles from "../pages/MemberProfile.module.css"
 
 const Save = () =>{
     const Navigate =useNavigate()
-    const { savingsRecord, memberData, confirm, memberDelete, data, selectMember} = useContext(UserContext)
+    const { savingsRecord, memberData, confirm, data, selectMember} = useContext(UserContext)
     const savingsDate = useForm()
     const savingsAmmount = useForm()
     const sFund = useForm()
@@ -22,7 +22,8 @@ const Save = () =>{
                 savingsDate: savingsDate.value, 
                 savingsAmmount: savingsAmmount.value, 
                 sFund: sFund.value, 
-                member_id: memberData.id
+                member_id: memberData.id,
+                creator: data.name
             }
                   
             await savingsRecord(savingsData)
