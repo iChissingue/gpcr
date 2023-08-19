@@ -67,6 +67,13 @@ export const SAVINGS_POST = (savingsData) =>{
     }
 }
 
+export const LOAN_POST = (loanData) =>{
+    return {
+        url: "http://localhost:2020/loan",
+        body: loanData
+    }
+}
+
 export const MEMBER_DELETE = (id) =>{
     return {
         url: `http://localhost:2020/member/${id}`,

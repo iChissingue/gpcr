@@ -9,6 +9,7 @@ import {
     MEMBERS_GET,
     MEMBERS_POST,
     SAVINGS_POST,
+    LOAN_POST,
     MEMBER_DELETE,
     MEMBERSAVINGS_GET, 
 } from "./Hooks/Api"
@@ -23,6 +24,7 @@ export const UserStorage = ({children}) =>{
     const [confirm, setConfirm] = useState()
     const [memberData, setMemberData] = useState()
     const [memberSavings, setMemberSavings] = useState()
+    const [memberLoans, setMemberLoans] = useState()
     const [membersData, setMembersData ] = useState()
     const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -135,23 +137,30 @@ export const UserStorage = ({children}) =>{
     const refreshRetrive = () =>{
         const retrivedData = window.sessionStorage.getItem('member')
         const retrivedSavings = window.sessionStorage.getItem('memberSavings')
+        const retrivedLoans = window.sessionStorage.getItem('memberLoans')
         const json = JSON.parse(retrivedData)
         const json1 = JSON.parse(retrivedSavings)
+        const json2 = JSON.parse(retrivedLoans)
         setMemberData(json)
         setMemberSavings(json1)
+        setMemberLoans(json2)
     }
 
     const selectMember = async (id) =>{
         const { url } = MEMBER_GET(id)
         const response = await Axios.get(url)
         if(response.status ===200){
-            const { member, memberSavings} = response.data
+            const { member, memberSavings, memberLoans} = response.data
+            console.log(memberLoans)
+            
             const mData ={...member, adress: response.data.description}
             setMemberData(mData)
             setMemberSavings(memberSavings) 
+            setMemberLoans(memberLoans)
             window.sessionStorage.setItem('member',  JSON.stringify(mData))
             window.sessionStorage.setItem('memberSavings',  JSON.stringify(memberSavings))
-            navigate(`members/memberprofile/${id}`)
+            window.sessionStorage.setItem('memberLoans',  JSON.stringify(memberLoans))
+            navigate(`/members/memberprofile/memberidentity${id}`)
         }else{
             refreshRetrive()
         }      
@@ -161,7 +170,12 @@ export const UserStorage = ({children}) =>{
         const { url} = SAVINGS_POST(savingsData)
         const response = await Axios.post(url, savingsData)
         setConfirm(response.data)
+    }
 
+    const loanRecord = async (loanData) =>{
+        const { url} = LOAN_POST(loanData)
+        const response = await Axios.post(url, loanData)
+        setConfirm(response.data)
     }
 
     const memberDelete = async (id) =>{
@@ -211,9 +225,11 @@ export const UserStorage = ({children}) =>{
             createMember, 
             selectMember, 
             logOut,
-            savingsRecord, 
+            savingsRecord,
+            loanRecord, 
             memberDelete,
             memberSavings,
+            memberLoans,
             data, 
             memberData, 
             membersData, 

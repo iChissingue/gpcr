@@ -2,8 +2,8 @@
     overflow: hidden;
     overflow-y: scroll;
     width: 370px;
-    height: 100px;
-    margin: 10px ;
+    height: 220px;
+    margin-left: -15px ;
     border: 1px solid #fff;
 }
 

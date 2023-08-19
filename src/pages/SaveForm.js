@@ -25,17 +25,18 @@ const Save = () =>{
                 member_id: memberData.id
             }
                   
-            savingsRecord(savingsData)
-            selectMember(memberData.id)
+            await savingsRecord(savingsData)
+            await selectMember(memberData.id)
+            Navigate("/members/memberprofile/membersavings")
         }
     }
     return (
         <div>
             {confirm && <p>{confirm}</p>}
             <h2 className={styles.title}>Fazer Poupanca</h2>
-            <Input placeholder="Data:" type="date" {...savingsDate}/>
-            <Input placeholder="Montante:" {...savingsAmmount}/>
-            <Input placeholder="Fundo Social:" {...sFund}/>
+            <Input label={"Data:"} type="date" {...savingsDate}/>
+            <Input label="Montante:" {...savingsAmmount}/>
+            <Input label="Fundo Social:" {...sFund}/>
             <input type="file" />
             <Button onClick={handdleSubmit}>Submeter</Button>
         </div>

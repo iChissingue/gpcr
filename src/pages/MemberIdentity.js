@@ -24,7 +24,7 @@ const MemberIdentity = () =>{
     }
 
     return (
-        <div>        
+        <div style={{paddingTop: 20}}>        
             <h3>Nome: {memberData.name}</h3>
             <p>Idade: {memberData.age}</p>
             <p>Herdeiro(a): {memberData.inheritant}</p>

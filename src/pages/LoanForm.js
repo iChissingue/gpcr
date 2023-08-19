@@ -8,29 +8,35 @@ import styles from "../pages/MemberProfile.module.css"
 
 const Loan = () =>{
     const Navigate =useNavigate()
-    const { savingsRecord, memberData, confirm, memberDelete, data, selectMember} = useContext(UserContext)
+    const { loanRecord, memberData, confirm, data, selectMember} = useContext(UserContext)
     const loanDate = useForm()
     const loanAmmount = useForm()
+    const interestAmmount = useForm()
+    interestAmmount.value = JSON.parse((loanAmmount.value)*12)/100
 
     const handdleSubmit = async (e) =>{
         e.preventDefault()
         if(loanDate.validate() && loanAmmount.validate()){
             const loanData = {
                 loanDate: loanDate.value, 
-                loanAmmount: loanAmmount.value,  
-                member_id: memberData.id
+                loanAmmount: loanAmmount.value,
+                interestAmmount: interestAmmount.value,  
+                member_id: memberData.id,
+                creator: data.name
             }
                   
-            savingsRecord(loanData)
-            selectMember(memberData.id)
+            await loanRecord(loanData)
+            await selectMember(memberData.id)
+            Navigate("/members/memberprofile/memberloans")
         }
     }
     return (
         <div>
             {confirm && <p>{confirm}</p>}
             <h2 className={styles.title}>Fazer Emprestimo</h2>
-            <Input placeholder="Data:" type="date" {...loanDate}/>
-            <Input placeholder="Montante:" {...loanAmmount}/>
+            <Input label="Data:" type="date" {...loanDate}/>
+            <Input label="Montante:" {...loanAmmount}/>
+            <Input disabled label="Juros 12%:" {...interestAmmount}/>
             
             <Button onClick={handdleSubmit}>Submeter</Button>
         </div>
