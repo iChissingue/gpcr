@@ -11,8 +11,8 @@ const MemberIdentity = () =>{
    
     
     const handdleDelete = () =>{
-        window.confirm("Deseja deletar este membro?")
-        if(window.confirm){
+        let response = window.confirm("Deletar este membro?")
+        if(response){
             memberDelete(memberData.id)
             Navigate("/login/members")
             alert("membro deletado com sucesso!")
@@ -25,7 +25,7 @@ const MemberIdentity = () =>{
 
     return (
         <div style={{paddingTop: 20}}>        
-            <h3>Nome: {memberData.name}</h3>
+            <p>Nome: <b>{memberData.name}</b></p>
             <p>Idade: {memberData.age}</p>
             <p>Herdeiro(a): {memberData.inheritant}</p>
             <p>Sexo: {memberData.sex}</p>

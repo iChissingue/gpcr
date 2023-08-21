@@ -11,6 +11,7 @@ import {
     SAVINGS_POST,
     REFUND_POST,
     LOAN_POST,
+    SAVINGS_GET,
     MEMBER_DELETE, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
@@ -27,6 +28,7 @@ export const UserStorage = ({children}) =>{
     const [memberLoans, setMemberLoans] = useState()
     const [memberRefunds, setMemberRefunds] = useState()
     const [membersData, setMembersData ] = useState()
+    const [savingsReportData, setSavingsReportData ] = useState()
     const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -133,6 +135,15 @@ export const UserStorage = ({children}) =>{
         const {data} = response
         setMembersData(data)      
     }
+    
+    const listSavings = async (savingsReportData) =>{
+        const { url } = SAVINGS_GET(savingsReportData)
+        console.log(url)
+        const response = await Axios.get(url,)
+        const {data} = response
+        console.log(data)
+        setSavingsReportData(data)      
+    }
 
 
     const refreshRetrive = () =>{
@@ -154,9 +165,7 @@ export const UserStorage = ({children}) =>{
         const { url } = MEMBER_GET(id)
         const response = await Axios.get(url)
         if(response.status ===200){
-            const { member, memberSavings, memberLoans, memberRefunds} = response.data
-            console.log(memberRefunds)
-            
+            const { member, memberSavings, memberLoans, memberRefunds} = response.data            
             const mData ={...member, adress: response.data.description}
             setMemberData(mData)
             setMemberSavings(memberSavings) 
@@ -190,6 +199,8 @@ export const UserStorage = ({children}) =>{
       
     }
 
+
+ 
     const memberDelete = async (id) =>{
         const { url } = MEMBER_DELETE(id)
         const response = await Axios.delete(url)
@@ -238,6 +249,7 @@ export const UserStorage = ({children}) =>{
             loanRecord,
             refundRecord, 
             memberDelete,
+            listSavings,
             memberSavings,
             memberLoans,
             memberRefunds,

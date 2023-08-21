@@ -1,15 +1,17 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "../UserContext"
 import styles from "../pages/MemberSavings.module.css"
+import MemberSavingsHook from "../Hooks/MemberSavingsHook"
 
 const MemberSavings = () =>{
     const { memberSavings, memberData} = useContext(UserContext)
-        
-        const savi = memberSavings && memberSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
+          
+
+    const savi = memberSavings && memberSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
         const total = savi && savi.reduce((acc, curr) => acc + curr, 0)
-           
-        const sFund = memberSavings && memberSavings.map(res =>(JSON.parse(res.sFund)))
-        const totalSF = sFund && sFund.reduce((acc, curr) => acc += curr, 0)       
+      
+    const sFund = memberSavings && memberSavings.map(res =>(JSON.parse(res.sFund)))
+        const totalSF = sFund && sFund.reduce((acc, curr) => acc += curr, 0) 
 
     return (
         <section className="container" style={{marginTop: 20}}>

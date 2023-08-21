@@ -67,6 +67,13 @@ export const SAVINGS_POST = (savingsData) =>{
     }
 }
 
+export const SAVINGS_GET = (savingsReportData) =>{
+    return {
+        url: `http://localhost:2020/savingsbetween/${ savingsReportData.startDate},  ${savingsReportData.endDate}}`,
+        body: savingsReportData
+    }
+}
+
 export const LOAN_POST = (loanData) =>{
     return {
         url: "http://localhost:2020/loan",
