@@ -28,7 +28,7 @@ const LoginForm = () =>{
                 {error && <p>{error}</p>}
                 <h2 className={styles.title}>Login</h2>
                 <form action=""onSubmit={handdleSubmit} >
-                    <Input label="Usuario" type="text" name="username" {...username}/>
+                    <Input label="Usuário" type="text" name="username" {...username}/>
                     <Input label="Senha" type="password" name="password" {...password}/>  
                     {loading? (
                         <Button disabled>Carregando...</Button>

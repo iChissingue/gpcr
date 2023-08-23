@@ -34,7 +34,7 @@ const Refund = () =>{
             <Input label="Data:" type="date" {...refundDate}/>
             <Input label="Montante:" {...refundAmmount}/>
             <Input label="Cobranca de 12%:" {...interestPay}/>
-            
+            <input type="file" />
             <Button onClick={handdleSubmit}>Submeter</Button>
         </div>
     )

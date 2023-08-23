@@ -13,6 +13,7 @@ const MemberIdentityNav = () =>{
                 <NavLink to="/members/memberprofile/memberrefunds"><button>Reembolsos</button></NavLink>
             </nav>
             <MemberUpdatesNav/>
+        
             <MemberIdentityRoutes/>
         </div>
     )

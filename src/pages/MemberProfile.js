@@ -5,12 +5,13 @@ import MemberIdentityNav from "./MemberIdentityNav"
 import MemberStateResume from "./MemberStateResume"
 
 const MemberProfile = () =>{
-    const { memberData, confirm,  data, selectMember} = useContext(UserContext)
+    const { memberData,data,} = useContext(UserContext)
   
         return(
             <div className={styles.memberProfile}>                
                 <div className={styles.profile}>
                     <b>{memberData.name}</b>
+                    <hr/>
                     <MemberIdentityNav/>
                 </div>
                 <div className={styles.savings} >

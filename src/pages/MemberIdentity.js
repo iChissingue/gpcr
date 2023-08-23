@@ -23,13 +23,14 @@ const MemberIdentity = () =>{
         Navigate("/login/members")
     }
 
+    
     return (
         <div style={{paddingTop: 20}}>        
             <p>Nome: <b>{memberData.name}</b></p>
             <p>Idade: {memberData.age}</p>
             <p>Herdeiro(a): {memberData.inheritant}</p>
             <p>Sexo: {memberData.sex}</p>
-            <p>Data de Admissao: {memberData.admissionDate}</p>
+            <p>Data de Admissao: {new Intl.DateTimeFormat('PT-br').format(new Date(memberData.admissionDate))}</p>
             <p>Contacto: {memberData.contact}</p>
             <p>Endereco: {memberData.adress}</p>
             <Button>Editar</Button>

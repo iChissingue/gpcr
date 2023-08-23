@@ -1,34 +1,25 @@
 import { useContext } from "react"
-import { Link } from "react-router-dom"
 import { UserContext } from "../UserContext"
-import SavingsReportForm from "./SavingsReportForm"
+import ReportNav from "./ReportNav"
+import styles from "../pages/Reports.module.css"
 
 const Reports = () =>{
-        const { savingsReport  } = useContext(UserContext)
+        const { savingsReportData  } = useContext(UserContext)
 
 
     return (
-        <div className="container"style={{display: 'flex', flexDirection: 'column'}}>
-            <h3>Lista de Relatorio</h3>
-            <ol>
-                <li>
-                    <Link to >Lista de Membros que Pouparam durante um Periodo</Link> 
-                </li>
-                <li>
-                    <Link to>Lista de Membros que Receberam Credito durante um Periodo</Link>
-                </li>
-                <li>
-                    <Link to>Lista de Membros que fizeram Reembolso durante um Periodo</Link>
-                </li>
-                <li>
-                    <Link to>Resumo geral de Poupancas</Link>
-                </li>
-                <li>
-                    <Link to>Resumo geral de Emprestiomos</Link>
-                </li>
-            </ol>
-            <div>
-                <SavingsReportForm/>
+        <div className="container" style={{display: 'flex'}}>
+            <div style={{display: 'flex', flexDirection: 'column'}}>               
+                <div>
+                <ReportNav/>
+                
+                </div>
+            </div>
+            <div className={styles.results}>   
+                <h1>Poupancas efetuadas de {} a {}</h1> 
+                {savingsReportData && savingsReportData.map((savings, i) =>(
+                    <p key={i}>{savings.savingsAmmount},00MT  - {savings.sFund},00MT - {new Intl.DateTimeFormat('PT-br').format(new Date(savings.savingsDate))}</p>
+                ))}            
             </div>
         </div>
     )

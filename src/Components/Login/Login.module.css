@@ -1,21 +1,23 @@
 .login{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    min-height: 100vh;
+    min-height: 86vh;
     gap: 2rem;
+    margin-top: -5px;
 }
 
 .login::after{
     display: block;
     content: '';
     background: url('../../../public/login.PNG') no-repeat center center ;
-    background-color: #eee;
+    /* background-color: #eee; */
     
 }
 
 .forms{
     max-width: 100rem;
     padding: 10rem;
+    background-color: #eee;
 }
 
 .title{

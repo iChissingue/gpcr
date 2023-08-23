@@ -4,29 +4,29 @@ import Input from "../Components/Forms/Input"
 import useForm from "../Hooks/useForm"
 import { UserContext } from "../UserContext"
 
-const SavingsReportForm = () =>{
-    const {listSavings} = useContext(UserContext)
+const RefundsReportForm = () =>{
+    const {listRefunds} = useContext(UserContext)
     const startDate = useForm()
     const endDate = useForm()
 
     const handdleSubmit = async (e) =>{
         e.preventDefault()
         if(startDate.validate() && endDate.validate() ){
-            const savingsReportData = {
+            const refundsReportData = {
                 startDate: startDate.value, 
                 endDate: endDate.value, 
                 
             }
                   
-            await listSavings(savingsReportData)
-            
+            await listRefunds(refundsReportData)
+         
            
         }
     }
 
     return (
         <div>
-            <h2>Formulario de Busca de Poupancas</h2>
+            <h2>Formulário de Busca de Reembolsos</h2>
             <Input label="Data Inicial:" type="date" {...startDate}/>
             <Input label="Data Final:" type="date"{...endDate}/>
             <Button onClick={handdleSubmit}>Submeter</Button>
@@ -34,4 +34,4 @@ const SavingsReportForm = () =>{
     )
 }
 
-export default SavingsReportForm
+export default RefundsReportForm

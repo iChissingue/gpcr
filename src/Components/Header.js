@@ -23,8 +23,10 @@ import { useNavigate } from 'react-router-dom'
 import LeaderboardIcon from '@mui/icons-material/Leaderboard'
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts'
 import HelpIcon from '@mui/icons-material/Help'
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import CloseIcon from '@mui/icons-material/Close';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'
+import AccountBoxIcon from '@mui/icons-material/AccountBox'
+import styles from "./Header.module.css"
+import { Margin } from '@mui/icons-material'
 
 const Header = () =>{
     const { login, data, logOut } = useContext(UserContext)
@@ -78,6 +80,7 @@ const Header = () =>{
     
     
       return (
+        <div className={styles.header}>
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="fixed">
             <Toolbar>
@@ -96,17 +99,19 @@ const Header = () =>{
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >
                 Pfuneka
               </Typography>
-              
+              <Typography style={{marginLeft: '10px', display: 'flex', flexDirection: 'raw'}}>
+                    PCR - Poupança e Crédito Rotativo | 
                      { data ? 
                     (
-                        <Link style={{ display: 'flex', flexDirection: 'raw'}} to="/login">
-                            {data.username}
+                        <span style={{marginLeft: '10px', display: 'flex', flexDirection: 'raw'}}>
+                            <b style={{color: 'black'}}>{data.name} </b> 
                            
-                            <b style={{color: '#ff2e1b', marginLeft: '10px', textDecoration: 'underline'}} onClick={logOut}>[ Sair ]</b >
-                        </Link>
+                            <button style={{color: '#1976D2', marginLeft: '10px'}} ><b><AccountBoxIcon sx={{margin: 0, padding: 0}}/></b></button >
+                            <button style={{color: 'red', marginLeft: '10px'}} onClick={ logOut}><b>[ Sair ]</b></button >
+                        </span>
                     ) 
-                    : (<Button onClick={() => handleLogInClick()} color="inherit">Login</Button>)}
-              
+                    : (<button onClick={() => handleLogInClick()} color="inherit"><b>Login</b></button>)}
+              </Typography>
             </Toolbar>
           </AppBar>
          <Drawer open={menuOpen} onClose={() => handleToggleMenu()}>
@@ -121,12 +126,12 @@ const Header = () =>{
               </ListItemButton>
               <ListItemButton onClick={()=> handleReportsClick()}>
                 <ListItemIcon><LeaderboardIcon color='primary'/></ListItemIcon>
-                <ListItemText>Relatorios</ListItemText>
+                <ListItemText>Relatórios</ListItemText>
               </ListItemButton>
               <hr/>
               <ListItemButton onClick={()=> handleAdminClick()}>
                 <ListItemIcon><ManageAccountsIcon color='primary'/></ListItemIcon>
-                <ListItemText>Administracao</ListItemText>
+                <ListItemText>Administração</ListItemText>
               </ListItemButton>
               <ListItemButton onClick={()=> handleHelpClick()}>
                 <ListItemIcon><HelpIcon color='primary'/></ListItemIcon>
@@ -139,6 +144,7 @@ const Header = () =>{
             </List>
           </Drawer> 
         </Box> 
+        </div>
       )
 }
 

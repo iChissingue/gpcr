@@ -251,6 +251,7 @@ export const UserStorage = ({children}) =>{
             memberDelete,
             listSavings,
             memberSavings,
+            savingsReportData,
             memberLoans,
             memberRefunds,
             data, 

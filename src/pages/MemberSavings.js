@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react"
 import { UserContext } from "../UserContext"
 import styles from "../pages/MemberSavings.module.css"
-import MemberSavingsHook from "../Hooks/MemberSavingsHook"
+
 
 const MemberSavings = () =>{
     const { memberSavings, memberData} = useContext(UserContext)
-          
+  
 
     const savi = memberSavings && memberSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
         const total = savi && savi.reduce((acc, curr) => acc + curr, 0)
@@ -19,7 +19,7 @@ const MemberSavings = () =>{
             <div className={styles.savingsList}>
                 {
                     memberSavings? memberSavings.map((savings, i) => (
-                    <p key={i} style={{marginTop: 5}}>{`${savings.savingsAmmount},00MT - ${savings.sFund},00MT - ${savings.savingsDate}`}</p>  
+                    <p key={i} style={{marginTop: 5}}>{`${savings.savingsAmmount},00MT - ${savings.sFund},00MT - ${new Intl.DateTimeFormat('PT-br').format(new Date(savings.savingsDate))}`}</p>  
                     ))
                     : <p style={{marginTop: 20, padding: 10}}>O(A) Sr(a) {memberData.name} ainda nao efetuou nenhuma poupanca!</p>
                 }
