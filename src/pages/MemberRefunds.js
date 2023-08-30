@@ -17,7 +17,11 @@ const MemberSavings = () =>{
             <div className={styles.savingsList}>
                 {
                     memberRefunds? memberRefunds.map((refunds, i) => (
-                    <p key={i} style={{marginTop: 5}}>{`${refunds.refundAmmount},00MT  - ${new Intl.DateTimeFormat('PT-br').format(new Date(refunds.refundDate))}`}</p>  
+                    <p key={i} style={{marginTop: 5}}>
+                        {`${refunds.refundAmmount},00MT  - 
+                        ${new Intl.DateTimeFormat('PT-br').format(new Date(refunds.refundDate))}
+                        `}
+                        </p>  
                     ))
                     : <p style={{marginTop: 20, padding: 10}}>O(A) Sr(a) {memberData.name} ainda nao efetuou nenhum Reembolso!</p>
                 }

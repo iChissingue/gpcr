@@ -17,7 +17,12 @@ const MemberLoans = () =>{
             <div className={styles.savingsList}>
                 {
                     memberLoans? memberLoans.map((loan, i) => (
-                    <p key={i} style={{marginTop: 5}}>{`${loan.loanAmmount},00MT - ${new Intl.DateTimeFormat('PT-br').format(new Date(loan.loanDate))}`}</p>  
+                    <p key={i} style={{marginTop: 5}}>
+                        {
+                        `${loan.loanAmmount},00MT - 
+                        ${new Intl.DateTimeFormat('PT-br').format(new Date(loan.loanDate))} -
+                        ${new Intl.DateTimeFormat('PT-br').format(new Date(loan.refundWaitingDate))}`
+                        }</p>  
                     ))
                     : <p style={{marginTop: 20, padding: 10}}>O(A) Sr(a) {memberData.name} ainda nao efetuou nenhum emprestimo!</p>
                 }

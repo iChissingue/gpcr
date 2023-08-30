@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, } from "react"
 import { UserContext } from "../UserContext"
 import styles from "../pages/MemberSavings.module.css"
 
 
 const MemberSavings = () =>{
     const { memberSavings, memberData} = useContext(UserContext)
-  
+    
+    console.log(new Intl.DateTimeFormat('PT-br').format(new Date(new Date().setDate(new Date().getDate() + 28))))
 
     const savi = memberSavings && memberSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
         const total = savi && savi.reduce((acc, curr) => acc + curr, 0)

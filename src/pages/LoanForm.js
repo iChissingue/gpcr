@@ -10,7 +10,11 @@ const Loan = () =>{
     const Navigate =useNavigate()
     const { loanRecord, memberData, confirm, data, selectMember} = useContext(UserContext)
     const loanDate = useForm()
+    const date = new Date(loanDate.value)
     const loanAmmount = useForm()
+    const refundWaitingDate = useForm()
+    refundWaitingDate.value = loanDate.value && new Intl.DateTimeFormat('PT-br')
+        .format(new Date(date.setDate(date.getDate() + 35)))
     let interestAmmount = useForm()
     interestAmmount.value = (JSON.parse(loanAmmount.value * 12)/100)
 
@@ -20,7 +24,8 @@ const Loan = () =>{
             const loanData = {
                 loanDate: loanDate.value, 
                 loanAmmount: loanAmmount.value,
-                interestAmmount: interestAmmount.value,  
+                interestAmmount: JSON.stringify(interestAmmount.value),
+                refundWaitingDate: refundWaitingDate.value, 
                 member_id: memberData.id,
                 creator: data.name
             }
@@ -36,6 +41,7 @@ const Loan = () =>{
             <h2 className={styles.title}>Fazer Emprestimo</h2>
             <Input label="Data:" type="date" {...loanDate}/>
             <Input label="Montante:" {...loanAmmount}/>
+            <Input disabled label="Data prevista de reembolso:"  {...refundWaitingDate}/>
             <Input disabled label="Juros 12%:" {...interestAmmount}/>
             
             <Button onClick={handdleSubmit}>Submeter</Button>

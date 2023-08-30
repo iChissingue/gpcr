@@ -138,10 +138,8 @@ export const UserStorage = ({children}) =>{
     
     const listSavings = async (savingsReportData) =>{
         const { url } = SAVINGS_GET(savingsReportData)
-        console.log(url)
         const response = await Axios.get(url,)
         const {data} = response
-        console.log(data)
         setSavingsReportData(data)      
     }
 
