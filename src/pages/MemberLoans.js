@@ -1,16 +1,14 @@
-import React, { useContext, useState } from "react"
+import React, { useContext} from "react"
 import { UserContext } from "../UserContext"
 import styles from "../pages/MemberSavings"
+import MemberSavingsHook from "../Hooks/MemberSavingsHook"
 
 const MemberLoans = () =>{
     const { memberLoans, memberData} = useContext(UserContext)
+    const Loan = MemberSavingsHook()
+    const { totalLoans } = Loan
         
-        const loan = memberLoans && memberLoans.map(res =>(JSON.parse(res.loanAmmount))) 
-        const total = loan && loan.reduce((acc, curr) => acc + curr, 0)
-           
-        // const sFund =   memberSavings && memberSavings.map(res =>(JSON.parse(res.sFund)))
-        // const totalSF = sFund && sFund.reduce((acc, curr) => acc += curr, 0)       
-
+              
     return (
         <section className="container" style={{marginTop: 20}}>
             <h2>Lista de Emprestimos</h2>
@@ -28,7 +26,7 @@ const MemberLoans = () =>{
                 }
             </div>
             <hr/>
-            <p style={{marginTop: 10}}>Total de Credito: <b>{total},00MT</b> </p>
+            <p style={{marginTop: 10}}>Total de Credito: <b>{totalLoans},00MT</b> </p>
         </section>
     )
 

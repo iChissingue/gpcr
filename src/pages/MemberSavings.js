@@ -1,18 +1,16 @@
 import React, { useContext, } from "react"
 import { UserContext } from "../UserContext"
 import styles from "../pages/MemberSavings.module.css"
+import MemberSavingsHook from "../Hooks/MemberSavingsHook"
 
 
 const MemberSavings = () =>{
     const { memberSavings, memberData} = useContext(UserContext)
+    const Savings = MemberSavingsHook()
+    const { totalSavings, totalSfund } = Savings
     
     console.log(new Intl.DateTimeFormat('PT-br').format(new Date(new Date().setDate(new Date().getDate() + 28))))
 
-    const savi = memberSavings && memberSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
-        const total = savi && savi.reduce((acc, curr) => acc + curr, 0)
-      
-    const sFund = memberSavings && memberSavings.map(res =>(JSON.parse(res.sFund)))
-        const totalSF = sFund && sFund.reduce((acc, curr) => acc += curr, 0) 
 
     return (
         <section className="container" style={{marginTop: 20}}>
@@ -27,8 +25,8 @@ const MemberSavings = () =>{
             </div>
 
             <hr/>
-            <p style={{marginTop: 10}}>Total de poupanca: <b>{total},00MT</b> </p>
-            <p style={{marginTop: 10}}>Total de Fundo Social: <b>{totalSF},00MT</b> </p>
+            <p style={{marginTop: 10}}>Total de poupanca: <b>{totalSavings? totalSavings : 0},00MT</b> </p>
+            <p style={{marginTop: 10}}>Total de Fundo Social: <b>{totalSfund? totalSfund : 0},00MT</b> </p>
         </section>
     )
 

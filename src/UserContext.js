@@ -18,6 +18,7 @@ import { useNavigate } from "react-router-dom"
 
 
 
+
 export const UserContext = createContext()
 
 export const UserStorage = ({children}) =>{
@@ -194,6 +195,7 @@ export const UserStorage = ({children}) =>{
     const refundRecord = async (refundData) =>{
         const { url} = REFUND_POST(refundData)
         const response = await Axios.post(url, refundData)
+        console.log(response)
       
     }
 
@@ -231,7 +233,7 @@ export const UserStorage = ({children}) =>{
         listMembers()
         selectMember()
        
-    }, [])
+    }, )
 
 
     
@@ -261,6 +263,7 @@ export const UserStorage = ({children}) =>{
             confirm
             }}>
             {children}
+        
         </UserContext.Provider>
     )
 }
