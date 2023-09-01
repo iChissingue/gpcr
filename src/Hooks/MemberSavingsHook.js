@@ -20,7 +20,7 @@ const MemberSavingsHook = () =>{
             setRefundIsValid(true)
         }else{
             setRefundIsValid(false)
-            alert(`Este reembolsou ${currentLoans}MT, acima do que devia!`)
+            return <p>Este membro reembolsou {currentLoans}MT, acima do que devia!</p>
         }
     }
     useEffect(() =>{
@@ -34,7 +34,7 @@ const MemberSavingsHook = () =>{
         setTotalRefunds(totalRefunds)
         refundValidate(totalLoans, totalRefunds)
         
-    }, [savi, sFund, loan, refund])
+    }, [savi, sFund, loan])
 
     
     return {

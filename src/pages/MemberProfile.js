@@ -4,11 +4,11 @@ import styles from "../pages/MemberProfile.module.css"
 import MemberIdentityNav from "./MemberIdentityNav"
 import MemberStateResume from "./MemberStateResume"
 import { useNavigate } from "react-router-dom"
-import { Box, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Toolbar } from "@mui/material"
+import { Box, Button, Drawer, IconButton, List, ListItemButton, ListItemText, Toolbar } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu'
 
 const MemberProfile = () =>{
-    const { memberData,data,} = useContext(UserContext)
+    const { memberData, membersData, selectMember, data,} = useContext(UserContext)
     const [menuOpen, setMenuOpen] = useState(false)
     const navigate = useNavigate()
     
@@ -35,12 +35,25 @@ const MemberProfile = () =>{
                             onClick={() => handleToggleMenu()}>
                             
                             <Drawer  open={menuOpen} onClose={() => handleToggleMenu()}>
-                                <List>
-                                <ListItemButton onClick={() => handleHomeClick()}>
-                                    <ListItemIcon></ListItemIcon>
-                                    <ListItemText>Home</ListItemText>
-                                </ListItemButton>
-                                </List>
+                            <List >
+                            <ListItemButton style={{display: 'flex', flexDirection: 'column'}}onClick={() => handleHomeClick()}>
+                                <h3 className={styles.title}>Lista dos Membros</h3>
+                                { 
+                                    membersData && membersData.map((member, i) =>  (                         
+
+                                    <div key={i} className={styles.card}>
+                                        <ListItemText>Codigo: {member.id}</ListItemText>
+                                        <ListItemText >
+                                            Nome:<Button onClick={() =>selectMember(member.id)} style={{fontWeight: 'bold'}}>{` ${member.name }`}</Button>
+                                        </ListItemText> 
+                                        Contacto:<i >
+                                                {` ${member.contact}`}
+                                        </i> 
+                                        <hr/> 
+                                    </div>
+                                ))}
+                            </ListItemButton>
+                            </List>
                             </Drawer> 
                             <MenuIcon/>
                         </IconButton>
