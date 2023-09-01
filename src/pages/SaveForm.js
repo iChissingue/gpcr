@@ -33,7 +33,7 @@ const Save = () =>{
     }
     return (
         <div>
-            {confirm && <p>{confirm}</p>}
+            
             <h2 className={styles.title}>Fazer Poupanca</h2>
             <Input label={"Data:"} type="date" {...savingsDate}/>
             <Input label="Montante:" {...savingsAmmount}/>

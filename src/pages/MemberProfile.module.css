@@ -1,8 +1,15 @@
 .memberProfile{
     display: flex;
-    padding-left: 255px;
     background-color: #eee;
     height: 85vh
+}
+
+.subMenu{
+    display: flex;
+    flex-direction: row;
+    padding-left: 255px;
+    
+    
 }
 
 .resume{

@@ -9,7 +9,6 @@ import {
     Button,
     Drawer,
     List,
-    ListItem,
     ListItemIcon,
     ListItemText,
     IconButton,
@@ -26,7 +25,7 @@ import HelpIcon from '@mui/icons-material/Help'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew'
 import AccountBoxIcon from '@mui/icons-material/AccountBox'
 import styles from "./Header.module.css"
-import { Margin } from '@mui/icons-material'
+
 
 const Header = () =>{
     const { login, data, logOut } = useContext(UserContext)
@@ -77,8 +76,6 @@ const Header = () =>{
         
       }
     
-    
-    
       return (
         <div className={styles.header}>
         <Box sx={{ flexGrow: 1 }}>
@@ -93,7 +90,7 @@ const Header = () =>{
                 sx={{ mr: 2 }}
                 onClick={() => handleToggleMenu()}
               >
-                <MenuIcon />
+              <MenuIcon />
               </IconButton>
                 }
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} >

@@ -233,7 +233,7 @@ export const UserStorage = ({children}) =>{
         listMembers()
         selectMember()
        
-    }, )
+    }, [] )
 
 
     

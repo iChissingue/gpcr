@@ -9,6 +9,7 @@ import Dashboard from "./Components/DashBoard"
 import AddMember from "./pages/AddMember"
 import MemberProfile from "./pages/MemberProfile"
 import ProtectedRoutes from "./Components/Help/ProtectedRoutes"
+import {ProtectedLoginRoute} from "./Components/Help/ProtectedRoutes"
 import Members from "./pages/Members"
 import LoginCreate from "./Components/Login/LoginCreate"
 import Reports from "./pages/Reports"
@@ -17,8 +18,8 @@ import Admin from "./pages/Admin"
 
 
 
-function App() {
 
+function App() {
 
   return (
     <div className="App">
@@ -27,7 +28,9 @@ function App() {
           <Header/>
             <Routes>  
               <Route path="/" element={<Home/>}/>
-              <Route path="/login/*" element={<Login/>}/>
+              <Route element={<ProtectedLoginRoute/>}>
+                <Route path="/login/*" element={<Login/>}/>
+              </Route>
               <Route element={<ProtectedRoutes/>}>
                 <Route path="/login/dashboard" element={<Dashboard/>}/>
                 <Route path="/members/add" element={<AddMember/>}/>
