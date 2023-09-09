@@ -69,8 +69,24 @@ export const SAVINGS_POST = (savingsData) =>{
 
 export const SAVINGS_GET = (savingsReportData) =>{
     return {
-        url: `http://localhost:2020/savingsbetween/${ savingsReportData.startDate},  ${savingsReportData.endDate}}`,
+        url: `
+        http://localhost:2020/savingsbetween/
+        ${ savingsReportData.startDate}, 
+        ${savingsReportData.endDate}}
+        `,
         body: savingsReportData
+    }
+}
+
+export const ALLSAVINGS_GET = () =>{
+    return {
+        url: `http://localhost:2020/savings`,
+    }
+}
+
+export const ALLREFUNDS_GET = () =>{
+    return {
+        url: `http://localhost:2020/refunds`,
     }
 }
 

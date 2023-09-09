@@ -1,13 +1,14 @@
 .memberProfile{
     display: flex;
     background-color: #eee;
-    height: 85vh
+    height: 85vh;
+ 
 }
 
 .subMenu{
     display: flex;
     flex-direction: row;
-    padding-left: 255px;
+    padding-left: 150px;
     
     
 }
@@ -23,11 +24,11 @@
 .profile, 
 .savings{
     border: 1px solid rgb(202, 202, 224);
-    width: 400px;
+    width: 450px;
     height: 440px;
     margin-left: 10px;
     padding: 20px;
-    background-color: #eee;
+  
     justify-items: space-between;
 }
 

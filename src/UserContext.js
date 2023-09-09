@@ -12,7 +12,9 @@ import {
     REFUND_POST,
     LOAN_POST,
     SAVINGS_GET,
-    MEMBER_DELETE, 
+    MEMBER_DELETE,
+    ALLSAVINGS_GET, 
+    ALLREFUNDS_GET, 
 } from "./Hooks/Api"
 import { useNavigate } from "react-router-dom"
 
@@ -30,6 +32,8 @@ export const UserStorage = ({children}) =>{
     const [memberRefunds, setMemberRefunds] = useState()
     const [membersData, setMembersData ] = useState()
     const [savingsReportData, setSavingsReportData ] = useState()
+    const [allSavings, setAllSavings ] = useState()
+    const [allRefunds, setAllRefunds ] = useState()
     const [login, setLogin] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -144,6 +148,19 @@ export const UserStorage = ({children}) =>{
         setSavingsReportData(data)      
     }
 
+    const listAllSavings = async () =>{
+        const { url } = ALLSAVINGS_GET()
+        const response = await Axios.get(url,)
+        const {data} = response
+        setAllSavings(data)      
+    }
+    const listAllRefunds = async () =>{
+        const { url } = ALLREFUNDS_GET()
+        const response = await Axios.get(url,)
+        const {data} = response
+        setAllRefunds(data)      
+    }
+
 
     const refreshRetrive = () =>{
         const retrivedData = window.sessionStorage.getItem('member')
@@ -195,7 +212,6 @@ export const UserStorage = ({children}) =>{
     const refundRecord = async (refundData) =>{
         const { url} = REFUND_POST(refundData)
         const response = await Axios.post(url, refundData)
-        console.log(response)
       
     }
 
@@ -232,7 +248,8 @@ export const UserStorage = ({children}) =>{
         autoLogin()
         listMembers()
         selectMember()
-       
+        listAllSavings()
+        listAllRefunds()
     }, [] )
 
 
@@ -250,8 +267,11 @@ export const UserStorage = ({children}) =>{
             refundRecord, 
             memberDelete,
             listSavings,
+            listMembers,
             memberSavings,
             savingsReportData,
+            allSavings,
+            allRefunds,
             memberLoans,
             memberRefunds,
             data, 
