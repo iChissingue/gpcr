@@ -30,10 +30,11 @@ const LoginForm = () =>{
                 <form action=""onSubmit={handdleSubmit} >
                     <Input label="Usuário" type="text" name="username" {...username}/>
                     <Input label="Senha" type="password" name="password" {...password}/>  
-                    {loading? (
+                    {loading? 
                         <Button disabled>Carregando...</Button>
-                    )
-                       : (<Button >Entrar</Button>)}
+                    
+                       : <Button >Entrar</Button>
+                    }
                             
                 </form>
                 

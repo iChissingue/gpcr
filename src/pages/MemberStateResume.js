@@ -15,23 +15,23 @@ const MemberStateResume = (data) =>{
            <table>
                 <tr>
                     <td style={{textAlign: 'left', height: 25}}>Comulativo da poupanca:</td>
-                    <td style={{textAlign: 'right'}}>{ totalSavings? totalSavings : 0.00 }MT</td>
+                    <td style={{textAlign: 'right'}}>{ totalSavings? parseFloat(totalSavings).toFixed(2) : 0.00 }MT</td>
                 </tr>
                 <tr>
                     <td style={{textAlign: 'left', height: 25}}>Comulativo de Fundo Social:</td>
-                    <td style={{textAlign: 'right'}}>{ totalSfund? totalSfund : 0.00 }MT</td>
+                    <td style={{textAlign: 'right'}}>{ totalSfund? parseFloat(totalSfund).toFixed(2) : 0.00 }MT</td>
                 </tr>
                 <tr>
                     <td style={{textAlign: 'left', height: 25}}>Comulativo de Crédito:</td>
-                    <td style={{textAlign: 'right'}}>{ totalLoans? totalLoans : 0.00 }MT</td>
+                    <td style={{textAlign: 'right'}}>{ totalLoans? parseFloat(totalLoans).toFixed(2) : 0.00 }MT</td>
                 </tr>
                 <tr>
                     <td style={{textAlign: 'left', height: 25}}>Crédito Reembolsado:</td>
-                    <td style={{textAlign: 'right'}}>{ totalRefunds? totalRefunds : 0.00 }MT</td>
+                    <td style={{textAlign: 'right'}}>{ totalRefunds? parseFloat(totalRefunds).toFixed(2) : 0.00 }MT</td>
                 </tr>
                 <tr>
                     <td style={{textAlign: 'left', height: 25}}>Saldo actual de Crédito:</td>
-                    <td style={{textAlign: 'right'}}>{ currentLoans >0? currentLoans: 0.00 }MT</td>
+                    <td style={{textAlign: 'right'}}>{ currentLoans >0? parseFloat(currentLoans).toFixed(2): 0.00 }MT</td>
                 </tr>
                 <tr>
                     <td style={{textAlign: 'left', height: 25}}>Juros:</td>

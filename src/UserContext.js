@@ -60,7 +60,7 @@ export const UserStorage = ({children}) =>{
     const userLogin = async (username, password) =>{
         try {
             setError(null)
-            setLoading(false)
+            setLoading(true)
             const response = await Axios.post(URL_POST, {username, password})
             if(response.status===200){
                 const { token } = response.data

@@ -25,7 +25,6 @@ const Loan = () =>{
                 loanDate: loanDate.value, 
                 loanAmmount: loanAmmount.value,
                 interestAmmount: JSON.stringify(interestAmmount.value),
-                refundWaitingDate: refundWaitingDate.value, 
                 member_id: memberData.id,
                 creator: data.name
             }
@@ -41,7 +40,6 @@ const Loan = () =>{
             <h2 className={styles.title}>Fazer Emprestimo</h2>
             <Input label="Data:" type="date" {...loanDate}/>
             <Input label="Montante:" {...loanAmmount}/>
-            <Input disabled label="Data prevista de reembolso:"  {...refundWaitingDate}/>
             <Input disabled label="Juros 12%:" {...interestAmmount}/>
             
             <Button onClick={handdleSubmit}>Submeter</Button>

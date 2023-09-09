@@ -1,21 +1,19 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, } from "react"
 import { UserContext } from "../UserContext"
 import styles from "../pages/MemberSavings.module.css"
 import { Button } from "@mui/material"
+import MemberSavingsHook from "../Hooks/MemberSavingsHook"
 
 const MemberSavings = () =>{
     const { memberRefunds, memberData} = useContext(UserContext)
-        
-        const refund = memberRefunds && memberRefunds.map(res =>(JSON.parse(res.refundAmmount))) 
-        const total = refund && refund.reduce((acc, curr) => acc + curr, 0)
-           
-        // const sFund = memberRefunds && memberRefunds.map(res =>(JSON.parse(res.sFund)))
-        // const totalSF = sFund && sFund.reduce((acc, curr) => acc += curr, 0)       
+    const Refunds = MemberSavingsHook()
+    const { totalRefunds } = Refunds    
 
     return (
         <section className="container" style={{marginTop: 20}}>
             <h2>Lista de Reembolsos</h2>
             <div className={styles.savingsList}>
+                { memberRefunds?
                 <table >
                     <thead>
                         <tr>
@@ -27,7 +25,7 @@ const MemberSavings = () =>{
                     </thead>
                     <tbody >
                         {
-                            memberRefunds? memberRefunds.map((refunds, i) => (
+                            memberRefunds && memberRefunds.map((refunds, i) => (
                                 <tr key={i}>
                                     <td>{refunds.refundAmmount}MT</td>
                                     <td>{refunds.interestPay}MT</td>
@@ -44,14 +42,15 @@ const MemberSavings = () =>{
                                     </td>
                                 </tr> 
                             ))
-                            : <p style={{marginTop: 20, padding: 10}}>O(A) Sr(a) {memberData.name} ainda nao efetuou nenhum Reembolso!</p>
                         }
                     </tbody>
                 </table>
+                        : <p style={{marginTop: 20, padding: 10}}>O(A) Sr(a) {memberData.name} ainda nao efetuou nenhum Reembolso!</p>
+                }
             </div>
 
             <hr/>
-            <p style={{marginTop: 10}}>Total de poupanca: <b>{total},00MT</b> </p>
+            <p style={{marginTop: 10}}>Total de reembolsos: <b>{totalRefunds? parseFloat(totalRefunds).toFixed(2) : 0.00}MT</b> </p>
           
         </section>
     )
