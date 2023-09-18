@@ -7,8 +7,8 @@ const Footer = () =>{
     return (
         <>
             <div className={styles.Footer}>
-                <hr/>
-                Footer
+          
+               <p><b>&copy; iChissingue 2023</b></p>
             </div>
         </>
     )

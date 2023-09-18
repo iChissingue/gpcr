@@ -15,6 +15,8 @@ import LoginCreate from "./Components/Login/LoginCreate"
 import Reports from "./pages/Reports"
 import HelpPage from "./pages/HelpPage"
 import Admin from "./pages/Admin"
+import EditMember from "./pages/EditMember"
+
 
 
 
@@ -35,6 +37,7 @@ function App() {
                 <Route path="/login/dashboard" element={<Dashboard/>}/>
                 <Route path="/members/add" element={<AddMember/>}/>
                 <Route path="/members/memberprofile/*" element={<MemberProfile/>}/>
+                <Route path="/members/memberprofile/editmember" element={<EditMember/>}/>
                 <Route path="login/members/*" element={<Members/>}/>
                 <Route path="/login/loginCreate" element={<LoginCreate/>}/>
                 <Route path="/login/reports/*" element={<Reports/>}/>

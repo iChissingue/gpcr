@@ -35,24 +35,27 @@ const MemberProfile = () =>{
                             onClick={() => handleToggleMenu()}>
                             
                             <Drawer  open={menuOpen} onClose={() => handleToggleMenu()}>
-                            <List >
-                            <ListItemButton style={{display: 'flex', flexDirection: 'column'}}onClick={() => handleHomeClick()}>
+                            <List style={{marginLeft: 20}}>
+                            
                                 <h3 className={styles.title}>Lista dos Membros</h3>
                                 { 
                                     membersData && membersData.map((member, i) =>  (                         
 
                                     <div key={i} className={styles.card}>
                                         <ListItemText>Codigo: {member.id}</ListItemText>
-                                        <ListItemText >
-                                            Nome:<Button onClick={() =>selectMember(member.id)} style={{fontWeight: 'bold'}}>{` ${member.name }`}</Button>
-                                        </ListItemText> 
-                                        Contacto:<i >
-                                                {` ${member.contact}`}
-                                        </i> 
+                                        Nome:
+                                        <ListItemButton style={{marginLeft: -15, display: 'inline', fontWeight: 'bold', color: '#1976D2'}} onClick={() =>selectMember(member.id)}>
+                                            {` ${member.name }`}
+                                        </ListItemButton>
+                                        <ListItemText>
+                                            Contacto:<i >{` ${member.contact}`}</i>
+                                        </ListItemText>
+                                                
+                                        
+                                        
                                         <hr/> 
                                     </div>
                                 ))}
-                            </ListItemButton>
                             </List>
                             </Drawer> 
                             <MenuIcon/>
@@ -61,7 +64,7 @@ const MemberProfile = () =>{
                 </Box> 
                 <div className={styles.subMenu}>               
                     <div className={styles.profile}>
-                        <b>{memberData.name}</b>
+                        <b style={{color: '#1976D2'}}>{memberData.name}</b>
                         <hr/>
                         <MemberIdentityNav/>
                     </div>

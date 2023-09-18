@@ -4,9 +4,11 @@ import { useContext } from "react"
 import { UserContext } from "../UserContext"
 import useForm from "../Hooks/useForm"
 import styles from "../pages/MemberProfile.module.css"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
 
 const Refund = () =>{
+    const Navigate = useNavigate()
     const { refundRecord, memberData, confirm, selectMember, data} = useContext(UserContext)
     const refundDate = useForm()
     const refundAmmount = useForm()

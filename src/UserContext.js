@@ -145,6 +145,7 @@ export const UserStorage = ({children}) =>{
         const { url } = SAVINGS_GET(savingsReportData)
         const response = await Axios.get(url,)
         const {data} = response
+        console.log(data)
         setSavingsReportData(data)      
     }
 

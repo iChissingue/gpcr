@@ -38,8 +38,9 @@ const LoginForm = () =>{
                             
                 </form>
                 
-                
-                <Link to='/login/LoginResetPassword'>Redefinir a senha</Link>
+                <div style={{textAlign: 'right', marginTop: 30}}>
+                    <Link  to='/login/LoginResetPassword'>Esqueceu a senha?</Link>
+                </div>
             </div>
         </section>
     )

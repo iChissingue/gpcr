@@ -8,7 +8,7 @@ import styles from "../pages/MemberProfile.module.css"
 
 
 const Save = () =>{
-    const Navigate =useNavigate()
+    const Navigate = useNavigate()
     const { savingsRecord, memberData, data, selectMember} = useContext(UserContext)
     const savingsDate = useForm()
     const savingsAmmount = useForm()

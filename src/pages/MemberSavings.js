@@ -13,7 +13,7 @@ const MemberSavings = () =>{
     const Savings = MemberSavingsHook()
     const { totalSavings, totalSfund } = Savings
     
-    console.log(new Intl.DateTimeFormat('PT-br').format(new Date(new Date().setDate(new Date().getDate() + 28))))
+    
 
 
     return (
@@ -34,8 +34,8 @@ const MemberSavings = () =>{
                 {
                     memberSavings && memberSavings.map((savings, i) => (
                         <tr key={i}>
-                            <td width={30}>{savings.savingsAmmount}MT</td>  
-                            <td >{savings.sFund}MT</td>
+                            <td width={30}>{parseFloat(savings.savingsAmmount).toFixed(2)}MT</td>  
+                            <td >{parseFloat(savings.sFund).toFixed(2)}MT</td>
                             <td >{new Intl.DateTimeFormat('PT-br').format(new Date(savings.savingsDate))}</td>
                             <td style={{display: 'flex', marginTop: -6}}>
                                 <Button style={{
@@ -61,8 +61,8 @@ const MemberSavings = () =>{
             </div>
 
             <hr/>
-            <p style={{marginTop: 10}}>Total de poupanca: <b>{totalSavings? totalSavings : 0.00}MT</b> </p>
-            <p style={{marginTop: 10}}>Total de Fundo Social: <b>{totalSfund? totalSfund : 0.00}MT</b> </p>
+            <p style={{marginTop: 10}}>Total de poupanca: <b>{totalSavings? parseFloat(totalSavings).toFixed(2) : 0.00}MT</b> </p>
+            <p style={{marginTop: 10}}>Total de Fundo Social: <b>{totalSfund? parseFloat(totalSfund).toFixed(2) : 0.00}MT</b> </p>
         </section>
     )
 

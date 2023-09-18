@@ -1,0 +1,12 @@
+.home img{
+    margin: auto;
+    padding-top: 40px; 
+    width: 200px;
+}
+
+.details{
+    margin: auto;
+    padding-top: 40px; 
+    text-align: center;
+    color: #1976D2;
+}
