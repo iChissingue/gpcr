@@ -18,7 +18,7 @@ const MemberSavings = () =>{
 
     return (
         <section className="container" style={{marginTop: 20}}>
-            <h2>Lista de Poupancas</h2>
+            <h2 title="Total de poupancas do membro">Lista de Poupancas</h2>
             <div className={styles.savingsList}>
             {memberSavings?
             <table>
@@ -38,14 +38,14 @@ const MemberSavings = () =>{
                             <td >{parseFloat(savings.sFund).toFixed(2)}MT</td>
                             <td >{new Intl.DateTimeFormat('PT-br').format(new Date(savings.savingsDate))}</td>
                             <td style={{display: 'flex', marginTop: -6}}>
-                                <Button style={{
+                                <Button title="Editar" style={{
                                     
                                     color:'#a2a2a2', 
                                     height: 20, 
                                     alignSelf: 'center',
                                     marginRight: 3
                                     }}><EditIcon/></Button>
-                                <Button style={{color:'#828282', height: 20, alignSelf: 'center'}}><DeleteForeverIcon/></Button>
+                                <Button title="Apagar" style={{color:'#828282', height: 20, alignSelf: 'center'}}><DeleteForeverIcon/></Button>
                             </td>
                         </tr>
                         ))

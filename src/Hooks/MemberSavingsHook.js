@@ -7,6 +7,7 @@ const MemberSavingsHook = () =>{
     const [totalLoans, setTotalLoans] = useState()
     const [totalSfund, setTotalSfund] = useState()
     const [totalRefunds, setTotalRefunds] = useState()
+    const [totalInterestPay, setTotalInterestPay] = useState()
     const [groupSavings, setGroupSavings] = useState()
     const [groupInterestPay, setGroupInterestPay] = useState()
     const [refundIsValid, setRefundIsValid] = useState(true)
@@ -15,6 +16,7 @@ const MemberSavingsHook = () =>{
     const sFund = memberSavings && memberSavings.map(res =>(JSON.parse(res.sFund)))
     const loan = memberLoans && memberLoans.map(res =>(JSON.parse(res.loanAmmount))) 
     const refund = memberRefunds && memberRefunds.map(res =>(JSON.parse(res.refundAmmount))) 
+    const interestPay = memberRefunds && memberRefunds.map(res =>(JSON.parse(res.interestPay))) 
     const tSavings = allSavings && allSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
     const tInterestPay = allRefunds && allRefunds.map(res =>(JSON.parse(res.interestPay))) 
     
@@ -32,12 +34,14 @@ const MemberSavingsHook = () =>{
         const totalSF = sFund && sFund.reduce((acc, curr) => acc + curr, 0) 
         const totalLoans = loan && loan.reduce((acc, curr) => acc + curr, 0)
         const totalRefunds = refund && refund.reduce((acc, curr) => acc + curr, 0)
+        const totalInterestPay = interestPay && interestPay.reduce((acc, curr) => acc + curr, 0)
         const groupSavings = tSavings && tSavings.reduce((acc, curr) => acc + curr, 0)
         const groupInterestPay = tInterestPay && tInterestPay.reduce((acc, curr) => acc + curr, 0)
         setTotalSavings(total)
         setTotalLoans(totalLoans)
         setTotalSfund(totalSF)
         setTotalRefunds(totalRefunds)
+        setTotalInterestPay(totalInterestPay)
         setGroupSavings(groupSavings)
         setGroupInterestPay(groupInterestPay)
         refundValidate(totalLoans, totalRefunds)
@@ -50,6 +54,7 @@ const MemberSavingsHook = () =>{
         totalLoans: totalLoans,
         totalSfund,
         totalRefunds,
+        totalInterestPay,
         refundIsValid,
         groupSavings,
         groupInterestPay,

@@ -138,6 +138,7 @@ export const UserStorage = ({children}) =>{
         const { url } = MEMBERS_GET()
         const response = await Axios.get(url)
         const {data} = response
+        console.log(data)
         setMembersData(data)      
     }
     

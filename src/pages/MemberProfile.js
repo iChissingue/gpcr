@@ -3,34 +3,28 @@ import { UserContext } from "../UserContext"
 import styles from "../pages/MemberProfile.module.css"
 import MemberIdentityNav from "./MemberIdentityNav"
 import MemberStateResume from "./MemberStateResume"
-import { useNavigate } from "react-router-dom"
-import { Box, Button, Drawer, IconButton, List, ListItemButton, ListItemText, Toolbar } from "@mui/material"
+import { Box, Drawer, IconButton, List, ListItemButton, ListItemText, Toolbar } from "@mui/material"
 import MenuIcon from '@mui/icons-material/Menu'
+import CallIcon from '@mui/icons-material/Call'
+import PermIdentityIcon from '@mui/icons-material/PermIdentity'
+import Grid3x3Icon from '@mui/icons-material/Grid3x3'
 
 const MemberProfile = () =>{
     const { memberData, membersData, selectMember, data,} = useContext(UserContext)
     const [menuOpen, setMenuOpen] = useState(false)
-    const navigate = useNavigate()
-    
   
     const handleToggleMenu = () =>{
       setMenuOpen(!menuOpen)
     }
 
-    const handleHomeClick = () =>{
-        navigate('/login/dashboard')
-        handleToggleMenu()
-      }
-  
         return(
             <div className={styles.memberProfile}>
                 <Box>
                     <Toolbar>
                         <IconButton 
-                            style={{bgcolor: 'primary'}}
                             size="large"
                             edge="start"
-                            color="inherit"
+                            color="primary"
                             aria-label="menu"
                             onClick={() => handleToggleMenu()}>
                             
@@ -42,13 +36,13 @@ const MemberProfile = () =>{
                                     membersData && membersData.map((member, i) =>  (                         
 
                                     <div key={i} className={styles.card}>
-                                        <ListItemText>Codigo: {member.id}</ListItemText>
-                                        Nome:
+                                        <ListItemText><Grid3x3Icon style={{marginBottom: -5}}/>: {member.id}</ListItemText>
+                                        <PermIdentityIcon style={{marginBottom: -5}}/>:
                                         <ListItemButton style={{marginLeft: -15, display: 'inline', fontWeight: 'bold', color: '#1976D2'}} onClick={() =>selectMember(member.id)}>
                                             {` ${member.name }`}
                                         </ListItemButton>
                                         <ListItemText>
-                                            Contacto:<i >{` ${member.contact}`}</i>
+                                            <CallIcon style={{marginBottom: -5}}/>:<i >{` ${member.contact}`}</i>
                                         </ListItemText>
                                                 
                                         

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { UserContext } from '../UserContext'
 import { 
     AppBar,
@@ -103,8 +103,8 @@ const Header = () =>{
                         <span style={{marginLeft: '10px', display: 'flex', flexDirection: 'raw'}}>
                             <b style={{color: 'black'}}>{data.name} </b> 
                            
-                            <button style={{color: '#1976D2', marginLeft: '10px'}} ><b><AccountBoxIcon sx={{margin: 0, padding: 0}}/></b></button >
-                            <button style={{color: 'red', marginLeft: '10px'}} onClick={ logOut}><b>[ Sair ]</b></button >
+                            <NavLink style={{color: 'silver', marginLeft: '10px'}} ><b><AccountBoxIcon sx={{margin: 0, padding: 0}}/></b></NavLink >
+                            <NavLink style={{color: 'red', marginLeft: '10px', textDecoration: 'underline'}} onClick={ logOut}><b>[ Sair ]</b></NavLink >
                         </span>
                     ) 
                     : (<button onClick={() => handleLogInClick()} color="inherit"><b>Login</b></button>)}

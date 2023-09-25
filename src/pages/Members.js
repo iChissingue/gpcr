@@ -1,9 +1,11 @@
 import { useContext } from "react"
 import { UserContext } from "../UserContext"
 import { Link } from "react-router-dom"
-import { Button } from "@mui/material"
+import { Button, ListItemText } from "@mui/material"
 import styles from "../pages/Members.module.css"
-
+import CallIcon from '@mui/icons-material/Call'
+import PermIdentityIcon from '@mui/icons-material/PermIdentity'
+import Grid3x3Icon from '@mui/icons-material/Grid3x3'
 
 
 
@@ -12,7 +14,7 @@ const Members = () =>{
 
     return (
         <div className={styles.membersPage} > 
-            <div >
+            <div className="container">
                 
                 <h2 className={styles.title}>Lista dos Membros</h2>
                 <div className={styles.members}>
@@ -20,14 +22,14 @@ const Members = () =>{
                         membersData && membersData.map((member, i) =>  (                         
 
                         <div key={i} className={styles.card}>
-                            <p className={styles.memberDetail}>Codigo: {member.id}</p>
+                            <p className={styles.memberDetail}><Grid3x3Icon style={{marginBottom: -5}}/>: {member.id}</p>
                             <p className={styles.memberDetail} >
-                                Nome:<Button onClick={() =>selectMember(member.id)} style={{fontWeight: 'bold'}}>{` ${member.name }`}</Button>
+                            <PermIdentityIcon style={{marginBottom: -5}}/>:<Button onClick={() =>selectMember(member.id)} style={{fontWeight: 'bold'}}>{` ${member.name }`}</Button>
                             </p> 
-                            Contacto:<i className={styles.memberDetail} >
+                            <CallIcon style={{marginBottom: -5}}/>:<i className={styles.memberDetail} >
                                     {` ${member.contact}`}
                             </i> 
-                            <hr/> 
+                            <hr style={{marginBottom: -8}}/> 
                         </div>
                     ))}
                 </div>

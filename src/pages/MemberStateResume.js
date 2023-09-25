@@ -1,12 +1,15 @@
 import MemberSavingsHook from "../Hooks/MemberSavingsHook"
 import styles from "./MemberProfile.module.css"
+import SavingsIcon from '@mui/icons-material/Savings'
+
 
 const MemberStateResume = (data) =>{
     const {
         totalSavings, 
         totalSfund, 
         totalLoans, 
-        totalRefunds, 
+        totalRefunds,
+        totalInterestPay, 
         refundIsValid, 
         groupSavings, 
         groupInterestPay} = MemberSavingsHook()
@@ -38,6 +41,10 @@ const MemberStateResume = (data) =>{
                         <td style={{textAlign: 'right'}}>{ totalRefunds? parseFloat(totalRefunds).toFixed(2) : 0.00 }MT</td>
                     </tr>
                     <tr>
+                        <td style={{textAlign: 'left', height: 25}}>Comulativo de juros pagos:</td>
+                        <td style={{textAlign: 'right'}}>{ totalInterestPay? parseFloat(totalInterestPay).toFixed(2) : 0.00 }MT</td>
+                    </tr>
+                    <tr>
                         <td style={{textAlign: 'left', height: 25}}>Saldo actual de Crédito:</td>
                         <td style={{textAlign: 'right'}}>{ currentLoans >0? parseFloat(currentLoans).toFixed(2): 0.00 }MT</td>
                     </tr>
@@ -47,7 +54,7 @@ const MemberStateResume = (data) =>{
                     </tr>
                     <tr><td colSpan={2}>   <hr /> </td></tr>
                     <tr >
-                        <td style={{textAlign: 'left', height: 25}}>Montante provavel de receber:</td>
+                        <td title="Montante provavel de receber" style={{textAlign: 'right', height: 25}}><SavingsIcon/>:</td>
                         <td style={{textAlign: 'right'}}><b>{ parseFloat(totalSavings-currentLoans + addInterest).toFixed(2) }MT</b></td>
                     </tr>
                 </tbody>
