@@ -17,9 +17,11 @@ const Reports = () =>{
             </div>
             <div className={styles.results}>   
                 <h1>Poupancas efetuadas de {} a {}</h1> 
-                {savingsReportData && savingsReportData.map((savings, i) =>(
-                    <p key={i}>{savings.savingsAmmount},00MT  - {savings.sFund},00MT - {new Intl.DateTimeFormat('PT-br').format(new Date(savings.savingsDate))}</p>
-                ))}            
+                {savingsReportData ? savingsReportData.map((savings, i) =>(
+                    <p key={i}>{parseFloat(savings.savingsAmmount).toFixed(2)}MT  - {parseFloat(savings.sFund).toFixed(2)}MT - {new Intl.DateTimeFormat('PT-br').format(new Date(savings.savingsDate))}</p>
+                )) 
+                    : <p style={{margin: 'auto'}}>Lista vazia!</p>
+                }            
             </div>
         </div>
     )

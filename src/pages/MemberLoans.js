@@ -52,7 +52,7 @@ const MemberLoans = () =>{
             }
             </div>
             <hr/>
-            <p style={{marginTop: 10}}>Total de Credito: <b>{parseFloat(totalLoans).toFixed(2)}MT</b> </p>
+            <p style={{marginTop: 10}}>Total de Credito: <b>{ totalLoans && parseFloat(totalLoans).toFixed(2)}0.00MT</b> </p>
         </section>
     )
 

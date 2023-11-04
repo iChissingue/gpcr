@@ -18,6 +18,7 @@ const MemberStateResume = (data) =>{
     const currentLoans = totalLoans - totalRefunds
     const memberSavingsPortion = ((totalSavings-currentLoans)*100)/groupSavings
     const addInterest = (groupInterestPay*memberSavingsPortion)/100
+    
 
     return (
         <div className={styles.resume}> 
