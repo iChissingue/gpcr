@@ -30,7 +30,7 @@ const MemberLoans = () =>{
                     {
                     memberLoans && memberLoans.map((loan, i) => (
                         <tr key={i}>
-                            <td width={30}>{parseFloat(loan.loanAmmount).toFixed(2)}MT</td>  
+                            <td width={30}>{parseFloat(loan.loanAmount).toFixed(2)}MT</td>  
                             <td >{new Intl.DateTimeFormat('PT-br').format(new Date(loan.loanDate))}</td>
                             <td >{new Intl.DateTimeFormat('PT-br').format(new Date(loan.refundWaitingDate))}</td>
                             <td style={{display: 'flex', marginTop: -6}}>

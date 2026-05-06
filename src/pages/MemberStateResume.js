@@ -50,13 +50,13 @@ const MemberStateResume = (data) =>{
                         <td style={{textAlign: 'right'}}>{ currentLoans >0? parseFloat(currentLoans).toFixed(2): 0.00 }MT</td>
                     </tr>
                     <tr>
-                        <td style={{textAlign: 'left', height: 25}}>Juros:</td>
-                        <td style={{textAlign: 'right'}}>{ currentLoans > 0? parseFloat(((currentLoans*12)/100).toFixed(2)): 0.00 }MT</td>
+                        <td style={{textAlign: 'left', height: 25}}>Juros Pagos:</td>
+                        <td style={{textAlign: 'right'}}>{ currentLoans > 0? parseFloat(((currentLoans*10)/100).toFixed(2   )): 0.00 }MT</td>
                     </tr>
                     <tr><td colSpan={2}>   <hr /> </td></tr>
                     <tr >
                         <td title="Montante provavel de receber" style={{textAlign: 'right', height: 25}}><SavingsIcon/>:</td>
-                        <td style={{textAlign: 'right'}}><b>{ parseFloat(totalSavings-currentLoans + addInterest).toFixed(2) }MT</b></td>
+                        <td style={{textAlign: 'right'}}><b>{ parseFloat(totalSavings + addInterest).toFixed(2) }MT</b></td>
                     </tr>
                 </tbody>
             </table>

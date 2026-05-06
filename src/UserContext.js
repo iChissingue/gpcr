@@ -138,7 +138,6 @@ export const UserStorage = ({children}) =>{
         const { url } = MEMBERS_GET()
         const response = await Axios.get(url)
         const {data} = response
-        console.log(data)
         setMembersData(data)      
     }
     
@@ -146,7 +145,6 @@ export const UserStorage = ({children}) =>{
         const { url } = SAVINGS_GET(savingsReportData)
         const response = await Axios.get(url,)
         const {data} = response
-        console.log(data)
         setSavingsReportData(data)      
     }
 
@@ -159,8 +157,12 @@ export const UserStorage = ({children}) =>{
     const listAllRefunds = async () =>{
         const { url } = ALLREFUNDS_GET()
         const response = await Axios.get(url,)
-        const {data} = response
-        setAllRefunds(data)      
+        if(response.status = 200){
+            const {data} = response
+            console.log(response)
+            setAllRefunds(data)
+        }
+              
     }
 
 

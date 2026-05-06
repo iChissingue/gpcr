@@ -14,11 +14,12 @@ const MemberSavingsHook = () =>{
 
     const savi = memberSavings && memberSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
     const sFund = memberSavings && memberSavings.map(res =>(JSON.parse(res.sFund)))
-    const loan = memberLoans && memberLoans.map(res =>(JSON.parse(res.loanAmmount))) 
-    const refund = memberRefunds && memberRefunds.map(res =>(JSON.parse(res.refundAmmount))) 
+    const loan = memberLoans && memberLoans.map(res =>(JSON.parse(res.loanAmount))) 
+    const refund = memberRefunds && memberRefunds.map(res =>(JSON.parse(res.refundAmount))) 
     const interestPay = memberRefunds && memberRefunds.map(res =>(JSON.parse(res.interestPay))) 
-    const tSavings = allSavings && allSavings.map(res =>(JSON.parse(res.savingsAmmount))) 
-    const tInterestPay = allRefunds && allRefunds.map(res =>(JSON.parse(res.interestPay))) 
+    const tSavings = allSavings && allSavings.map(res =>(JSON.parse(res.savingsAmmount)))
+    console.log(allRefunds) 
+    const tInterestPay = allRefunds && allRefunds.map(res =>(JSON.parse(res.interestPay)))
     
     const refundValidate = (totalLoans, totalRefunds) =>{
         const currentLoans = totalLoans - totalRefunds

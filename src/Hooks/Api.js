@@ -1,8 +1,10 @@
-export const URL_POST = "http://localhost:2020/user/login"
+// const basicURL = 'https://pcr-api-prod.onrender.com'
+
+export const URL_POST = 'https://pcr-api-prod.onrender.com/user/login'
 
 export const USER_GET = (token)=>{
     return {
-        url: 'http://localhost:2020/user/getLoginCredentials',
+        url: 'https://pcr-api-prod.onrender.com/user/getLoginCredentials',
         headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -11,7 +13,7 @@ export const USER_GET = (token)=>{
 
 export const USER_TOKEN_VALIDATE = (token)=>{
     return {
-        url: 'http://localhost:2020/user/loginTokenValidate',
+        url: 'https://pcr-api-prod.onrender.com/user/loginTokenValidate',
         body: {token}
     }
 }
@@ -24,7 +26,7 @@ export const USER_CREATE = (
     userCategory, 
     userState) =>{
     return {
-        url: 'http://localhost:2020/user',
+        url: 'https://pcr-api-prod.onrender.com/user',
         body: {name, 
             username, 
             password, 
@@ -38,31 +40,31 @@ export const USER_CREATE = (
 
 export const MEMBERS_GET = () =>{
     return {
-        url: "http://localhost:2020/members"
+        url: "https://pcr-api-prod.onrender.com/members"
     }
 }
 
 export const MEMBER_GET = (id) =>{
     return {
-        url: `http://localhost:2020/member/${id}`
+        url: `https://pcr-api-prod.onrender.com/member/${id}`
     }
 }
 
 export const MEMBERSAVINGS_GET = (id) =>{
     return {
-        url: `http://localhost:2020/savings/${id}`
+        url: `https://pcr-api-prod.onrender.com/savings/${id}`
     }
 }
 
 export const MEMBERS_POST = () =>{
     return {
-        url: "http://localhost:2020/member"
+        url: "https://pcr-api-prod.onrender.com/member"
     }
 }
 
 export const SAVINGS_POST = (savingsData) =>{
     return {
-        url: "http://localhost:2020/savings",
+        url: "https://pcr-api-prod.onrender.com/savings",
         body: savingsData
     }
 }
@@ -70,7 +72,7 @@ export const SAVINGS_POST = (savingsData) =>{
 export const SAVINGS_GET = (savingsReportData) =>{
     return {
         url: `
-        http://localhost:2020/savingsbetween/
+        https://pcr-api-prod.onrender.com/savingsbetween/
         ${ savingsReportData.startDate}, 
         ${savingsReportData.endDate}}
         `,
@@ -80,33 +82,33 @@ export const SAVINGS_GET = (savingsReportData) =>{
 
 export const ALLSAVINGS_GET = () =>{
     return {
-        url: `http://localhost:2020/savings`,
+        url: `https://pcr-api-prod.onrender.com/savings`,
     }
 }
 
 export const ALLREFUNDS_GET = () =>{
     return {
-        url: `http://localhost:2020/refunds`,
+        url: `https://pcr-api-prod.onrender.com/refunds`,
     }
 }
 
 export const LOAN_POST = (loanData) =>{
     return {
-        url: "http://localhost:2020/loan",
+        url: "https://pcr-api-prod.onrender.com/loan",
         body: loanData
     }
 }
 
 export const REFUND_POST = (refundData) =>{
     return {
-        url: "http://localhost:2020/refund",
+        url: "https://pcr-api-prod.onrender.com/refund",
         body: refundData
     }
 }
 
 export const MEMBER_DELETE = (id) =>{
     return {
-        url: `http://localhost:2020/member/${id}`,
+        url: `https://pcr-api-prod.onrender.com/member/${id}`,
     }
 }
 

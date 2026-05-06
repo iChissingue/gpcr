@@ -12,19 +12,16 @@ const Loan = () =>{
     const loanDate = useForm()
     const date = new Date(loanDate.value)
     const loanAmmount = useForm()
-    const refundWaitingDate = useForm()
-    refundWaitingDate.value = loanDate.value && new Intl.DateTimeFormat('PT-br')
-        .format(new Date(date.setDate(date.getDate() + 35)))
+    
     let interestAmmount = useForm()
-    interestAmmount.value = (JSON.parse(loanAmmount.value * 12)/100)
+    interestAmmount.value = (JSON.parse(loanAmmount.value * 10)/100)
 
     const handdleSubmit = async (e) =>{
         e.preventDefault()
         if(loanDate.validate() && loanAmmount.validate()){
             const loanData = {
                 loanDate: loanDate.value, 
-                loanAmmount: loanAmmount.value,
-                interestAmmount: JSON.stringify(interestAmmount.value),
+                loanAmount: loanAmmount.value,
                 member_id: memberData.id,
                 creator: data.name
             }
