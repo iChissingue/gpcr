@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { UserContext } from "../UserContext"
 import { Link } from "react-router-dom"
-import { Button, ListItemText } from "@mui/material"
+import { Button } from "@mui/material"
 import styles from "../pages/Members.module.css"
 import CallIcon from '@mui/icons-material/Call'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
