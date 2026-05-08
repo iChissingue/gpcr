@@ -1,4 +1,4 @@
-const basicURL = 'https://pcr-api-prod.onrender.com'
+const basicURL = process.env.REACT_APP_API_URL
 
 export const URL_POST = `${basicURL}/user/login`
 
