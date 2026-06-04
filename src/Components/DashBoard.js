@@ -1,4 +1,4 @@
-import { useContext, React } from "react"
+import { useContext, React, useMemo } from "react"
 import { Box, Card, Grid, CardContent, Typography, Button } from '@mui/material'
 import SavingsIcon from "@mui/icons-material/Savings"
 import CreditCardIcon from "@mui/icons-material/CreditCard"
@@ -11,15 +11,18 @@ import { UserContext } from "../UserContext"
 const Dashboard = () =>{
     const { data, allSavings } = useContext(UserContext)
     
-    const totalSavings = allSavings && allSavings.reduce((ac, savings) =>{
+    const totalSavings = useMemo(() => {
+        return allSavings && allSavings.reduce((ac, savings) =>{
         return ac + parseFloat(savings.savingsAmmount || 0)
     }, 0)
+    }, [allSavings])
+    
 
     const formatedTotalSavings = totalSavings.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         MaximunFractionDigits: 2
     }) + 'MT'
-    console.log(totalSavings)
+    
     return (
         <div className="container" >
             <p style={{textAlign: 'center', paddingTop: 60, paddingBottom: 10, color: '#000000'}}>Olá, <b style={{ color: "#1976d2" }}>{data.name}</b>, seja bem vindo(a) ao Sistema de Gestão de PCR PFUNEKA!</p>  

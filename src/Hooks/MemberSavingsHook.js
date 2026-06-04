@@ -59,6 +59,7 @@ const MemberSavingsHook = () =>{
         refundIsValid,
         groupSavings,
         groupInterestPay,
+        allSavings
     }
 }
 
