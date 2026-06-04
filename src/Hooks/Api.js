@@ -1,4 +1,4 @@
-const basicURL = process.env.REACT_APP_API_URL
+const basicURL = process.env.REACT_APP_API_URL || 'http://localhost/2026'
 
 export const URL_POST = `${basicURL}/user/login`
 
